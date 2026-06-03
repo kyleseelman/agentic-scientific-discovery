@@ -1,0 +1,126 @@
+{
+  "hyp_93fdd92355": {
+    "id": "hyp_93fdd92355",
+    "statement": "Coordinated differential expression in stress-response and cell-cycle gene sets distinguishes treatment from control.",
+    "rationale": "Data summary shows separation on PC1 with enrichment of annotated gene sets related to these processes.",
+    "testable_prediction": "Gene set enrichment on ranked differential expression yields q<0.05 for at least one a priori pathway.",
+    "required_data": [
+      "expression_matrix",
+      "sample_groups",
+      "pathway_gene_sets"
+    ],
+    "confidence_prior": 0.45,
+    "novelty_score": 0.55,
+    "status": "supported",
+    "confidence_posterior": 0.6177237185056472,
+    "updated_at": "2026-05-24T22:11:20.071984+00:00"
+  },
+  "hyp_bc15284a89": {
+    "id": "hyp_bc15284a89",
+    "statement": "A subset of genes with high variance drives batch-like structure confounding group comparisons.",
+    "rationale": "High fraction of variance on early PCs may reflect technical or biological heterogeneity worth testing before causal claims.",
+    "testable_prediction": "Association of top variable genes with batch covariates is stronger than with treatment label.",
+    "required_data": [
+      "expression_matrix",
+      "sample_groups"
+    ],
+    "confidence_prior": 0.35,
+    "novelty_score": 0.4,
+    "status": "proposed",
+    "confidence_posterior": null,
+    "updated_at": "2026-05-24T22:11:19.772970+00:00"
+  },
+  "hyp_50dd5bc5de": {
+    "id": "hyp_50dd5bc5de",
+    "statement": "Coordinated differential expression in stress-response and cell-cycle gene sets distinguishes treatment from control.",
+    "rationale": "Data summary shows separation on PC1 with enrichment of annotated gene sets related to these processes.",
+    "testable_prediction": "Gene set enrichment on ranked differential expression yields q<0.05 for at least one a priori pathway.",
+    "required_data": [
+      "expression_matrix",
+      "sample_groups",
+      "pathway_gene_sets"
+    ],
+    "confidence_prior": 0.45,
+    "novelty_score": 0.55,
+    "status": "supported",
+    "confidence_posterior": 0.6177237185056472,
+    "updated_at": "2026-05-24T22:11:21.679833+00:00"
+  },
+  "hyp_756fd15243": {
+    "id": "hyp_756fd15243",
+    "statement": "A subset of genes with high variance drives batch-like structure confounding group comparisons.",
+    "rationale": "High fraction of variance on early PCs may reflect technical or biological heterogeneity worth testing before causal claims.",
+    "testable_prediction": "Association of top variable genes with batch covariates is stronger than with treatment label.",
+    "required_data": [
+      "expression_matrix",
+      "sample_groups"
+    ],
+    "confidence_prior": 0.35,
+    "novelty_score": 0.4,
+    "status": "proposed",
+    "confidence_posterior": null,
+    "updated_at": "2026-05-24T22:11:21.472780+00:00"
+  },
+  "hyp_e212a80144": {
+    "id": "hyp_e212a80144",
+    "statement": "Coordinated differential expression in stress-response and cell-cycle gene sets distinguishes treatment from control.",
+    "rationale": "Data summary shows separation on PC1 with enrichment of annotated gene sets related to these processes.",
+    "testable_prediction": "Gene set enrichment on ranked differential expression yields q<0.05 for at least one a priori pathway.",
+    "required_data": [
+      "expression_matrix",
+      "sample_groups",
+      "pathway_gene_sets"
+    ],
+    "confidence_prior": 0.45,
+    "novelty_score": 0.55,
+    "status": "supported",
+    "confidence_posterior": 0.6177237185056472,
+    "updated_at": "2026-05-24T22:11:21.900299+00:00"
+  },
+  "hyp_bd91ccf215": {
+    "id": "hyp_bd91ccf215",
+    "statement": "A subset of genes with high variance drives batch-like structure confounding group comparisons.",
+    "rationale": "High fraction of variance on early PCs may reflect technical or biological heterogeneity worth testing before causal claims.",
+    "testable_prediction": "Association of top variable genes with batch covariates is stronger than with treatment label.",
+    "required_data": [
+      "expression_matrix",
+      "sample_groups"
+    ],
+    "confidence_prior": 0.35,
+    "novelty_score": 0.4,
+    "status": "proposed",
+    "confidence_posterior": null,
+    "updated_at": "2026-05-24T22:11:21.692637+00:00"
+  },
+  "hyp_c791ec0267": {
+    "id": "hyp_c791ec0267",
+    "statement": "Coordinated differential expression in stress-response and cell-cycle gene sets distinguishes treatment from control.",
+    "rationale": "Data summary shows separation on PC1 with enrichment of annotated gene sets related to these processes.",
+    "testable_prediction": "Gene set enrichment on ranked differential expression yields q<0.05 for at least one a priori pathway.",
+    "required_data": [
+      "expression_matrix",
+      "sample_groups",
+      "pathway_gene_sets"
+    ],
+    "confidence_prior": 0.45,
+    "novelty_score": 0.55,
+    "status": "supported",
+    "confidence_posterior": 0.6177237185056472,
+    "updated_at": "2026-05-24T22:11:24.095761+00:00"
+  },
+  "hyp_8a337d8f28": {
+    "id": "hyp_8a337d8f28",
+    "statement": "A subset of genes with high variance drives batch-like structure confounding group comparisons.",
+    "rationale": "High fraction of variance on early PCs may reflect technical or biological heterogeneity worth testing before causal claims.",
+    "testable_prediction": "Association of top variable genes with batch covariates is stronger than with treatment label.",
+    "required_data": [
+      "expression_matrix",
+      "sample_groups"
+    ],
+    "confidence_prior": 0.35,
+    "novelty_score": 0.4,
+    "status": "proposed",
+    "confidence_posterior": null,
+    "updated_at": "2026-05-24T22:11:23.883382+00:00"
+  }
+}

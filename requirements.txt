@@ -1,0 +1,19 @@
+# Agentic Scientific Discovery — pinned for reproducibility
+numpy==2.2.4
+pandas==2.2.3
+scipy==1.15.2
+scikit-learn==1.6.1
+matplotlib==3.10.1
+requests==2.32.3
+python-dotenv==1.0.1
+typing_extensions==4.13.2
+statsmodels==0.14.4
+
+# GPU support — sentence-transformers for GPU-accelerated embeddings
+sentence-transformers>=3.0.0
+
+# Optional: OpenAI (install only if using OpenAI backend)
+# openai==1.70.0
+
+# GPU: PyTorch + transformers are expected as system packages or installed separately
+# pip install torch --index-url https://download.pytorch.org/whl/cu130

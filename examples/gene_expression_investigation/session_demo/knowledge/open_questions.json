@@ -1,0 +1,66 @@
+{
+  "q_34812ab9e9": {
+    "id": "q_34812ab9e9",
+    "question": "Validate top hits with orthogonal database evidence",
+    "priority": 0.6177237185056472,
+    "linked_hypotheses": [
+      "hyp_93fdd92355"
+    ]
+  },
+  "q_66f9e9341f": {
+    "id": "q_66f9e9341f",
+    "question": "Check correlation of DE with technical covariates",
+    "priority": 0.6177237185056472,
+    "linked_hypotheses": [
+      "hyp_93fdd92355"
+    ]
+  },
+  "q_de0d14e11e": {
+    "id": "q_de0d14e11e",
+    "question": "Validate top hits with orthogonal database evidence",
+    "priority": 0.6177237185056472,
+    "linked_hypotheses": [
+      "hyp_50dd5bc5de"
+    ]
+  },
+  "q_5cff702279": {
+    "id": "q_5cff702279",
+    "question": "Check correlation of DE with technical covariates",
+    "priority": 0.6177237185056472,
+    "linked_hypotheses": [
+      "hyp_50dd5bc5de"
+    ]
+  },
+  "q_c9a015d5f1": {
+    "id": "q_c9a015d5f1",
+    "question": "Validate top hits with orthogonal database evidence",
+    "priority": 0.6177237185056472,
+    "linked_hypotheses": [
+      "hyp_e212a80144"
+    ]
+  },
+  "q_8cdb502f8f": {
+    "id": "q_8cdb502f8f",
+    "question": "Check correlation of DE with technical covariates",
+    "priority": 0.6177237185056472,
+    "linked_hypotheses": [
+      "hyp_e212a80144"
+    ]
+  },
+  "q_5fc18a7254": {
+    "id": "q_5fc18a7254",
+    "question": "Validate top hits with orthogonal database evidence",
+    "priority": 0.6177237185056472,
+    "linked_hypotheses": [
+      "hyp_c791ec0267"
+    ]
+  },
+  "q_50bd6e1137": {
+    "id": "q_50bd6e1137",
+    "question": "Check correlation of DE with technical covariates",
+    "priority": 0.6177237185056472,
+    "linked_hypotheses": [
+      "hyp_c791ec0267"
+    ]
+  }
+}

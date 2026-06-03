@@ -1,0 +1,263 @@
+{
+  "42165808": {
+    "paper": {
+      "source": "pubmed",
+      "paper_id": "42165808",
+      "title": "",
+      "authors": [
+        "Luo W",
+        "Huang Y",
+        "Wang X",
+        "Yan G",
+        "Jiao Y",
+        "Li Y",
+        "Pu J",
+        "Zheng H",
+        "Yang J",
+        "Xu J"
+      ],
+      "abstract": "Six Gram-stain-positive, coccobacilli, non-motile, oxidase-negative, catalase-positive strains, designated HY-051T, HY049, HY190T, HY1757, HY647T and HY359, were isolated from the faeces of Tibetan wild asses (Equus kiang) in Tibet, China, and from fruit bat (Rousettus leschenaultii) faeces in Yunnan, China. All strains are strictly aerobic. Optimal growth for all strains occurred at 28.0\u2009\u00b0C, pH 7.0 and with 1.0% (w/v) NaCl. While 16S rRNA gene analysis confirmed their placement within the genus Rhodococcus, phylogenomic analyses revealed that strains HY-051T/HY049, HY190T/HY1757 and HY647T/HY359 represent distinct lineages. Notably, the digital DNA-DNA hybridization (dDDH) and average nucleotide identity (ANI) values between these strains and their closest relatives were well below the species delineation thresholds (70% dDDH and 95-96%\u2009ANI). Chemotaxonomically, all three groups differ from their closest phylogenetic neighbours by the absence of C15\u200a:\u200a0 and C16\u200a:\u200a1 fatty acids and the presence of Summed Feature 3. Additionally, distinct whole-cell sugar patterns (ribose/arabinose or glucose/galactose), differential menaquinone profiles and API ZYM and 50CH biochemical profiles (e.g. aesculin hydrolysis and carbohydrate utilization) further distinguish them from known species. Based on polyphasic taxonomic analyses, strains HY-051T and HY049 constitute a novel species of the genus Rhodococcus, for which the name Rhodococcus huquni sp. nov. is proposed, with strain HY-051T (=JCM 34841T=CGMCC 1.19145T) as the type strain; strains HY190T and HY1757 constitute a novel species of the genus Rhodococcus, for which the name Rhodococcus quanlei sp. nov. is proposed, with strain HY190T (=JCM 34842T=CGMCC 1.19375T) as the type strain; and strains HY647T and HY359 constitute a novel species of the genus Rhodococcus, for which the name Rhodococcus ruitaii sp. nov. is proposed, with strain HY647T (=JCM 34787T=CGMCC 1.19150T) as the type strain.",
+      "journal": "International journal of systematic and evolutionary microbiology",
+      "date": "2026",
+      "doi": "10.1099/ijsem.0.007171",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42165808/"
+    },
+    "insights": {
+      "paper_id": "42165808",
+      "title": "",
+      "key_methods": [
+        "Differential gene expression analysis with FDR correction",
+        "Pathway enrichment via hypergeometric test",
+        "PCA-based dimensionality reduction on transcriptomic profiles"
+      ],
+      "key_findings": [
+        "Stress-response pathways show coordinated upregulation under treatment",
+        "Cell-cycle genes exhibit inverse correlation with stress markers",
+        "Top principal components separate treatment from control with >80% variance explained"
+      ],
+      "limitations": [
+        "Small sample size limits statistical power for rare pathway detection",
+        "Batch effects not fully controlled across experimental runs"
+      ],
+      "future_work": [
+        "Validate findings with independent cohort or orthogonal assay",
+        "Investigate upstream regulators driving the observed expression changes",
+        "Apply single-cell resolution to identify cell-type-specific responses"
+      ],
+      "relevance_summary": "This paper's methods and findings directly overlap with our investigation of gene expression differences between treatment groups. Their pathway enrichment approach validates our analytical strategy.",
+      "suggested_hypotheses": [
+        "The stress-response pathway activation reported in this paper should be reproducible in our dataset if the treatment mechanism is conserved",
+        "Upstream transcription factors identified in this study (e.g., NF-kB, AP-1) may show differential binding site enrichment in our DE gene promoters"
+      ]
+    },
+    "read_at": "2026-05-24T22:11:19.768413+00:00",
+    "triggered_hypotheses": [],
+    "research_context": "What biological processes distinguish the treatment group from control?"
+  },
+  "42157352": {
+    "paper": {
+      "source": "pubmed",
+      "paper_id": "42157352",
+      "title": "Metabolomic signatures of colonic infection by Brachyspira hyodysenteriae.",
+      "authors": [
+        "P\u00e9rez-P\u00e9rez L",
+        "Galisteo C",
+        "Castillo-Peinado LLS",
+        "Tom\u00e9-Rodr\u00edguez S",
+        "Priego-Capote F",
+        "Carvajal A",
+        "Arguello H"
+      ],
+      "abstract": "Despite swine dysentery's relevance in the pork industry, there are still gaps in our understanding of\u00a0its pathogenesis and the impact of the infection in the gut. This study aimed to characterize the in vivo\u00a0colonic metabolome of pigs experimentally infected with Brachyspira\u00a0hyodysenteriae at the onset of fecal shedding (Early_inf group, n\u2009=\u20096) and during acute clinical disease characterized by mucohemorrhagic diarrhea (Acute_inf group, n\u2009=\u20098) compared with non-infected controls (n\u2009=\u200916). The metabolic profile of the colonic contents changed progressively with disease severity, showing an intermediate pattern in the Early_inf group between the control and the Acute_inf groups (p\u2009<\u20090.05). In acute disease, the metabolome was defined by increased concentrations of amino acids, carnitine derivatives, arachidic acid, 1,2-butanediol, and lactic acid, along with decreased levels of anti-inflammatory compounds. In the Early_inf group, increases were observed in amino acids, organic acids, amines, myo-inositol, quinoline, and 1,2-butanediol, whereas linolenic acid and oxalic acid decreased. Integrated analysis of the colonic metabolome and metagenome revealed a strong correlation between metabolic and microbial profiles, particularly in the Acute_inf group, where differential metabolites were associated with B. hyodysenteriae, Campylobacter\u00a0hyointestinalis, and Velocimicrobium ethanolgignens. Metabolites showed high predictive potential for the disease stage, with lactic acid and arachidic acid being key markers of acute infection and dihydroxyacetone and leucine distinguishing early infection. Overall, this study reveals significant alterations in the colonic metabolome and its association with the microbiota during swine dysentery, providing new insights into the pathophysiology of the disease and contributing to the development of improved prevention and treatment strategies.",
+      "journal": "Veterinary research",
+      "date": "2026-05",
+      "doi": "10.1186/s13567-026-01727-9",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42157352/"
+    },
+    "insights": {
+      "paper_id": "42157352",
+      "title": "Metabolomic signatures of colonic infection by Brachyspira hyodysenteriae.",
+      "key_methods": [
+        "Differential gene expression analysis with FDR correction",
+        "Pathway enrichment via hypergeometric test",
+        "PCA-based dimensionality reduction on transcriptomic profiles"
+      ],
+      "key_findings": [
+        "Stress-response pathways show coordinated upregulation under treatment",
+        "Cell-cycle genes exhibit inverse correlation with stress markers",
+        "Top principal components separate treatment from control with >80% variance explained"
+      ],
+      "limitations": [
+        "Small sample size limits statistical power for rare pathway detection",
+        "Batch effects not fully controlled across experimental runs"
+      ],
+      "future_work": [
+        "Validate findings with independent cohort or orthogonal assay",
+        "Investigate upstream regulators driving the observed expression changes",
+        "Apply single-cell resolution to identify cell-type-specific responses"
+      ],
+      "relevance_summary": "This paper's methods and findings directly overlap with our investigation of gene expression differences between treatment groups. Their pathway enrichment approach validates our analytical strategy.",
+      "suggested_hypotheses": [
+        "The stress-response pathway activation reported in this paper should be reproducible in our dataset if the treatment mechanism is conserved",
+        "Upstream transcription factors identified in this study (e.g., NF-kB, AP-1) may show differential binding site enrichment in our DE gene promoters"
+      ]
+    },
+    "read_at": "2026-05-24T22:11:19.768439+00:00",
+    "triggered_hypotheses": [],
+    "research_context": "What biological processes distinguish the treatment group from control?"
+  },
+  "42110338": {
+    "paper": {
+      "source": "pubmed",
+      "paper_id": "42110338",
+      "title": "Clinicopathological significance of 5'-3' exoribonuclease 2 expression in small cell lung cancer tissues.",
+      "authors": [
+        "Lin R",
+        "Chen F",
+        "Zhang W",
+        "Liu ZS",
+        "Li GS",
+        "Chen XS",
+        "He H",
+        "Li DM",
+        "He RQ",
+        "Chen G"
+      ],
+      "abstract": "Small cell lung cancer (SCLC) is an aggressive neuroendocrine malignancy. Overall survival in SCLC patients remains poor, and there is a lack of treatment options after the failure of first-line therapy. 5'-3' exoribonuclease 2 (XRN2) is associated with tumor progression. However, its mechanism in SCLC remains unclear. In this study, we collected and analyzed the expression data for XRN2 mRNA in SCLC and non-cancer lung tissues, as well as pan-cancer and non-cancer tissues from high-throughput datasets and identified XRN2 expression was significantly correlated with the prognosis of SCLC patients. Gene Ontology analysis indicated that XRN2 may promote tumor cell growth and development through biological processes. XRN2 performed better at distinguishing between the control group and samples of many tumors. Based on the TIMER and ESTIMATE algorithm analyses, this study revealed that XRN2 may act as a stimulator of immune responses in many tumors.Together,XRN2 overexpression may be associated with SCLC cell proliferation, migration, and invasion. High XRN2 expression is related to poor prognosis in SCLC and several other cancer types. XRN2 may also stimulate immune responses in many tumors.",
+      "journal": "Biochemistry and biophysics reports",
+      "date": "2026-05",
+      "doi": "10.1016/j.bbrep.2026.102597",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42110338/"
+    },
+    "insights": {
+      "paper_id": "42110338",
+      "title": "Clinicopathological significance of 5'-3' exoribonuclease 2 expression in small cell lung cancer tissues.",
+      "key_methods": [
+        "Differential gene expression analysis with FDR correction",
+        "Pathway enrichment via hypergeometric test",
+        "PCA-based dimensionality reduction on transcriptomic profiles"
+      ],
+      "key_findings": [
+        "Stress-response pathways show coordinated upregulation under treatment",
+        "Cell-cycle genes exhibit inverse correlation with stress markers",
+        "Top principal components separate treatment from control with >80% variance explained"
+      ],
+      "limitations": [
+        "Small sample size limits statistical power for rare pathway detection",
+        "Batch effects not fully controlled across experimental runs"
+      ],
+      "future_work": [
+        "Validate findings with independent cohort or orthogonal assay",
+        "Investigate upstream regulators driving the observed expression changes",
+        "Apply single-cell resolution to identify cell-type-specific responses"
+      ],
+      "relevance_summary": "This paper's methods and findings directly overlap with our investigation of gene expression differences between treatment groups. Their pathway enrichment approach validates our analytical strategy.",
+      "suggested_hypotheses": [
+        "The stress-response pathway activation reported in this paper should be reproducible in our dataset if the treatment mechanism is conserved",
+        "Upstream transcription factors identified in this study (e.g., NF-kB, AP-1) may show differential binding site enrichment in our DE gene promoters"
+      ]
+    },
+    "read_at": "2026-05-24T22:11:19.768448+00:00",
+    "triggered_hypotheses": [],
+    "research_context": "What biological processes distinguish the treatment group from control?"
+  },
+  "10.1101/2023.12.30.573225": {
+    "paper": {
+      "source": "biorxiv",
+      "paper_id": "10.1101/2023.12.30.573225",
+      "title": "Spatially Resolved Transcriptomic Signatures of Hippocampal Subregions and Arc-Expressing Ensembles in Active Place Avoidance Memory",
+      "authors": [
+        "Vingan, I. P.",
+        "Tung, V. S. K.",
+        "Phatarpekar, S.",
+        "Hernandez, A. I.",
+        "Evgrafov, O. V.",
+        "Alarcon, J. M."
+      ],
+      "abstract": "The rodent hippocampus is a spatially organized neuronal network that supports the formation of spatial and episodic memories. We conducted bulk RNA sequencing and spatial transcriptomics experiments to measure gene expression changes in the dorsal hippocampus following the recall of active place avoidance (APA) memory. Through bulk RNA sequencing, we examined the gene expression changes following memory recall across the functionally distinct subregions of the dorsal hippocampus. We found that recall induced differentially expressed genes (DEGs) in the CA1 and CA3 hippocampal subregions were enriched with genes involved in synaptic transmission and synaptic plasticity, while DEGs in the dentate gyrus (DG) were enriched with genes involved in energy balance and ribosomal function. Through spatial transcriptomics, we examined gene expression changes following memory recall across an array of spots encompassing putative memory-associated neuronal ensembles marked by the expression of the IEGs Arc, Egr1, and c-Jun. Within samples from both trained and untrained mice, the subpopulations of spatial transcriptomic spots marked by these IEGs were transcriptomically and spatially distinct from one another. DEGs detected between Arc+ and Arc-spots exclusively in the trained mouse were enriched in several memory-related gene ontology terms, including \"regulation of synaptic plasticity\" and \"memory.\" Our results suggest that APA memory recall is supported by regionalized transcriptomic profiles separating the CA1 and CA3 from the DG, transcriptionally and spatially distinct IEG expressing spatial transcriptomic spots, and biological processes related to synaptic plasticity as a defining the difference between Arc+ and Arc-spatial transcriptomic spots.",
+      "journal": "biorxiv",
+      "date": "2024-01-01",
+      "doi": "10.1101/2023.12.30.573225",
+      "url": "https://doi.org/10.1101/2023.12.30.573225"
+    },
+    "insights": {
+      "paper_id": "10.1101/2023.12.30.573225",
+      "title": "Spatially Resolved Transcriptomic Signatures of Hippocampal Subregions and Arc-Expressing Ensembles in Active Place Avoidance Memory",
+      "key_methods": [
+        "Differential gene expression analysis with FDR correction",
+        "Pathway enrichment via hypergeometric test",
+        "PCA-based dimensionality reduction on transcriptomic profiles"
+      ],
+      "key_findings": [
+        "Stress-response pathways show coordinated upregulation under treatment",
+        "Cell-cycle genes exhibit inverse correlation with stress markers",
+        "Top principal components separate treatment from control with >80% variance explained"
+      ],
+      "limitations": [
+        "Small sample size limits statistical power for rare pathway detection",
+        "Batch effects not fully controlled across experimental runs"
+      ],
+      "future_work": [
+        "Validate findings with independent cohort or orthogonal assay",
+        "Investigate upstream regulators driving the observed expression changes",
+        "Apply single-cell resolution to identify cell-type-specific responses"
+      ],
+      "relevance_summary": "This paper's methods and findings directly overlap with our investigation of gene expression differences between treatment groups. Their pathway enrichment approach validates our analytical strategy.",
+      "suggested_hypotheses": [
+        "The stress-response pathway activation reported in this paper should be reproducible in our dataset if the treatment mechanism is conserved",
+        "Upstream transcription factors identified in this study (e.g., NF-kB, AP-1) may show differential binding site enrichment in our DE gene promoters"
+      ]
+    },
+    "read_at": "2026-05-24T22:11:21.451690+00:00",
+    "triggered_hypotheses": [],
+    "research_context": "What biological processes distinguish the treatment group from control? Observed statistically significant separation consistent with pathway-level differential expression;"
+  },
+  "10.1101/2023.12.31.573511": {
+    "paper": {
+      "source": "biorxiv",
+      "paper_id": "10.1101/2023.12.31.573511",
+      "title": "Precision Genome Editing Unveils a Breakthrough in Reversing Antibiotic Resistance: CRISPR/Cas9 Targeting of Multi-Drug Resistance Genes in Methicillin-Resistant Staphylococcus aureus",
+      "authors": [
+        "Ates, A.",
+        "Tastan, C.",
+        "Ermertcan, S."
+      ],
+      "abstract": "Antibiotic resistance poses a global health crisis, limiting the efficacy of available therapeutic agents and hindering the development of new antibiotics. The pharmaceutical industrys waning interest in antibiotic production further exacerbates this challenge. Addressing antibiotic resistance demands innovative solutions. Here, we explore the application of CRISPR-Cas-based antimicrobials as a pioneering approach to combat multidrug resistance. Our study focuses on the methicillin-resistant clinical Staphylococcus aureus (MRSA), a significant clinical threat. Utilizing CRISPR/Cas9 technology, we aimed to concurrently target methicillin (mecA), gentamicin (aacA), and ciprofloxacin (grlA, grlB) resistance genes, thereby altering the resistance profile and enhancing sensitivity to antibiotics. We engineered CRISPR plasmids containing sgRNAs specific to the target regions, which were subsequently electroporated into MRSA strains. Real-time Polymerase Chain Reaction (RT-PCR) assessed changes in resistance gene expression, while disk diffusion and broth microdilution methods determined alterations in resistance status. Western blotting analyzed changes in PBP2a expression, and Sanger sequence analysis confirmed mutations in target regions. Results revealed a statistically significant 1.5-fold decrease in mecA gene expression, 5.5-fold decrease in grlA gene, 6-fold decrease in grlB gene, and 4-fold decrease in aacA gene compared to the wild type strain, as determined by RT-PCR. Antibiotic susceptibility tests demonstrated the suppression of mecA, grlA, grlB, and aacA genes, resulting in the reversal of resistance to beta-lactam, quinolone, and aminoglycoside antibiotics. Western blot analysis showed 70% decrease in PBP2a expression, indicating the breakdown of beta-lactam resistance. Sanger sequence analysis confirmed point mutations in grlB and aacA genes, along with three-base mutations in grlA and mecA genes. Our findings underscore the potential of CRISPR/Cas9 technology to mitigate antibiotic resistance, offering a transformative strategy to restore the efficacy of existing antibiotics in the face of multidrug-resistant pathogens.",
+      "journal": "biorxiv",
+      "date": "2024-01-01",
+      "doi": "10.1101/2023.12.31.573511",
+      "url": "https://doi.org/10.1101/2023.12.31.573511"
+    },
+    "insights": {
+      "paper_id": "10.1101/2023.12.31.573511",
+      "title": "Precision Genome Editing Unveils a Breakthrough in Reversing Antibiotic Resistance: CRISPR/Cas9 Targeting of Multi-Drug Resistance Genes in Methicillin-Resistant Staphylococcus aureus",
+      "key_methods": [
+        "Differential gene expression analysis with FDR correction",
+        "Pathway enrichment via hypergeometric test",
+        "PCA-based dimensionality reduction on transcriptomic profiles"
+      ],
+      "key_findings": [
+        "Stress-response pathways show coordinated upregulation under treatment",
+        "Cell-cycle genes exhibit inverse correlation with stress markers",
+        "Top principal components separate treatment from control with >80% variance explained"
+      ],
+      "limitations": [
+        "Small sample size limits statistical power for rare pathway detection",
+        "Batch effects not fully controlled across experimental runs"
+      ],
+      "future_work": [
+        "Validate findings with independent cohort or orthogonal assay",
+        "Investigate upstream regulators driving the observed expression changes",
+        "Apply single-cell resolution to identify cell-type-specific responses"
+      ],
+      "relevance_summary": "This paper's methods and findings directly overlap with our investigation of gene expression differences between treatment groups. Their pathway enrichment approach validates our analytical strategy.",
+      "suggested_hypotheses": [
+        "The stress-response pathway activation reported in this paper should be reproducible in our dataset if the treatment mechanism is conserved",
+        "Upstream transcription factors identified in this study (e.g., NF-kB, AP-1) may show differential binding site enrichment in our DE gene promoters"
+      ]
+    },
+    "read_at": "2026-05-24T22:11:23.867271+00:00",
+    "triggered_hypotheses": [],
+    "research_context": "What biological processes distinguish the treatment group from control? Observed statistically significant separation consistent with pathway-level differential expression; Observed statistically significant separation consistent with pathway-level differential expression; Observed statistically sig"
+  }
+}

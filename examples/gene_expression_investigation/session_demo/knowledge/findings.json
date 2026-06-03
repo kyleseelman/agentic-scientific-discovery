@@ -1,0 +1,110 @@
+{
+  "find_f773c9212e": {
+    "id": "find_f773c9212e",
+    "statement": "Observed statistically significant separation consistent with pathway-level differential expression; caveats on confounding remain.",
+    "evidence_strength": 0.65,
+    "experiment_id": "exp_c0cee6089e",
+    "hypothesis_id": "hyp_93fdd92355",
+    "provenance": {
+      "verdict": "supported",
+      "details": {
+        "verdict": "supported",
+        "confidence": 0.72,
+        "summary": "Observed statistically significant separation consistent with pathway-level differential expression; caveats on confounding remain.",
+        "confounders": [
+          "Potential batch effects if not randomized",
+          "Sample size"
+        ],
+        "follow_ups": [
+          "Validate top hits with orthogonal database evidence",
+          "Check correlation of DE with technical covariates"
+        ],
+        "evidence_strength": 0.65
+      },
+      "literature_grounded": false
+    },
+    "created_at": "2026-05-24T22:11:20.072015+00:00",
+    "entities": []
+  },
+  "find_b57432ac16": {
+    "id": "find_b57432ac16",
+    "statement": "Observed statistically significant separation consistent with pathway-level differential expression; caveats on confounding remain.",
+    "evidence_strength": 0.65,
+    "experiment_id": "exp_aabfa521ba",
+    "hypothesis_id": "hyp_50dd5bc5de",
+    "provenance": {
+      "verdict": "supported",
+      "details": {
+        "verdict": "supported",
+        "confidence": 0.72,
+        "summary": "Observed statistically significant separation consistent with pathway-level differential expression; caveats on confounding remain.",
+        "confounders": [
+          "Potential batch effects if not randomized",
+          "Sample size"
+        ],
+        "follow_ups": [
+          "Validate top hits with orthogonal database evidence",
+          "Check correlation of DE with technical covariates"
+        ],
+        "evidence_strength": 0.65
+      },
+      "literature_grounded": false
+    },
+    "created_at": "2026-05-24T22:11:21.679865+00:00",
+    "entities": []
+  },
+  "find_91136b050f": {
+    "id": "find_91136b050f",
+    "statement": "Observed statistically significant separation consistent with pathway-level differential expression; caveats on confounding remain.",
+    "evidence_strength": 0.65,
+    "experiment_id": "exp_34b8c94688",
+    "hypothesis_id": "hyp_e212a80144",
+    "provenance": {
+      "verdict": "supported",
+      "details": {
+        "verdict": "supported",
+        "confidence": 0.72,
+        "summary": "Observed statistically significant separation consistent with pathway-level differential expression; caveats on confounding remain.",
+        "confounders": [
+          "Potential batch effects if not randomized",
+          "Sample size"
+        ],
+        "follow_ups": [
+          "Validate top hits with orthogonal database evidence",
+          "Check correlation of DE with technical covariates"
+        ],
+        "evidence_strength": 0.65
+      },
+      "literature_grounded": false
+    },
+    "created_at": "2026-05-24T22:11:21.900331+00:00",
+    "entities": []
+  },
+  "find_c387d482d1": {
+    "id": "find_c387d482d1",
+    "statement": "Observed statistically significant separation consistent with pathway-level differential expression; caveats on confounding remain.",
+    "evidence_strength": 0.65,
+    "experiment_id": "exp_1629c545cb",
+    "hypothesis_id": "hyp_c791ec0267",
+    "provenance": {
+      "verdict": "supported",
+      "details": {
+        "verdict": "supported",
+        "confidence": 0.72,
+        "summary": "Observed statistically significant separation consistent with pathway-level differential expression; caveats on confounding remain.",
+        "confounders": [
+          "Potential batch effects if not randomized",
+          "Sample size"
+        ],
+        "follow_ups": [
+          "Validate top hits with orthogonal database evidence",
+          "Check correlation of DE with technical covariates"
+        ],
+        "evidence_strength": 0.65
+      },
+      "literature_grounded": false
+    },
+    "created_at": "2026-05-24T22:11:24.095794+00:00",
+    "entities": []
+  }
+}

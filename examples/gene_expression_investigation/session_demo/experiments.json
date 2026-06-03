@@ -1,0 +1,2140 @@
+{
+  "records": [
+    {
+      "id": "exp_c0cee6089e",
+      "hypothesis_id": "hyp_93fdd92355",
+      "plan": {
+        "hypothesis_id": "h_mock",
+        "steps": [
+          {
+            "tool": "profile_dataset",
+            "params": {},
+            "description": "Summarize dimensions, groups, and missingness."
+          },
+          {
+            "tool": "differential_expression",
+            "params": {
+              "method": "welch_t",
+              "correction": "fdr_bh"
+            },
+            "description": "Test per-gene differences between groups."
+          },
+          {
+            "tool": "pathway_enrichment",
+            "params": {
+              "direction": "up_down",
+              "correction": "fdr_bh"
+            },
+            "description": "Enrichment on ranked genes or DE hits."
+          },
+          {
+            "tool": "plot_volcano",
+            "params": {
+              "fdr_threshold": 0.05
+            },
+            "description": "Visualize effect size vs significance."
+          }
+        ],
+        "expected_duration": "short",
+        "success_criteria": "Significant pathway enrichment or coherent DE pattern matching the biological process named in the hypothesis.",
+        "failure_criteria": "No significant enrichment after multiple-testing correction."
+      },
+      "execution_trace": [
+        {
+          "index": 0,
+          "tool": "profile_dataset",
+          "params": {},
+          "description": "Summarize dimensions, groups, and missingness.",
+          "ok": true,
+          "output": {
+            "n_samples": 24,
+            "n_genes": 800,
+            "group_counts": {
+              "control": 12,
+              "treatment": 12
+            },
+            "missing_fraction": 0.0,
+            "mean_expression_std_across_samples": 0.8584958374010375,
+            "top_variable_genes_head": [
+              "GENE_0039",
+              "GENE_0234",
+              "GENE_0012",
+              "GENE_0037",
+              "GENE_0005"
+            ],
+            "groups_compared": [
+              "control",
+              "treatment"
+            ]
+          },
+          "error": null
+        },
+        {
+          "index": 1,
+          "tool": "differential_expression",
+          "params": {
+            "method": "welch_t",
+            "correction": "fdr_bh"
+          },
+          "description": "Test per-gene differences between groups.",
+          "ok": true,
+          "output": {
+            "table_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/differential_expression.csv",
+            "n_significant_q_0.05": 28,
+            "method": "welch_t",
+            "correction": "fdr_bh",
+            "gpu_accelerated": true,
+            "top_genes_by_q": [
+              {
+                "gene": "GENE_0016",
+                "log2_fold_change": 1.7682175636291504,
+                "statistic": -6.4840407371521,
+                "pvalue": 6.386063909001045e-06,
+                "qvalue": 0.002561231689347426,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0036",
+                "log2_fold_change": 1.7529277801513672,
+                "statistic": -5.948640823364258,
+                "pvalue": 6.4030792233685655e-06,
+                "qvalue": 0.002561231689347426,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0037",
+                "log2_fold_change": 1.999715805053711,
+                "statistic": -5.634809494018555,
+                "pvalue": 1.202692667921513e-05,
+                "qvalue": 0.0032071804477907017,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0004",
+                "log2_fold_change": 1.5459322929382324,
+                "statistic": -5.16774845123291,
+                "pvalue": 3.7931696907883324e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0018",
+                "log2_fold_change": 1.8047199249267578,
+                "statistic": -5.158838748931885,
+                "pvalue": 4.276473480486987e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0038",
+                "log2_fold_change": 1.6474676132202148,
+                "statistic": -5.173120975494385,
+                "pvalue": 4.2029373719938405e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0012",
+                "log2_fold_change": 1.9300823211669922,
+                "statistic": -5.1644134521484375,
+                "pvalue": 3.6269848838346225e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0000",
+                "log2_fold_change": 1.5600528717041016,
+                "statistic": -5.354492664337158,
+                "pvalue": 2.987186379024969e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0007",
+                "log2_fold_change": 1.8511252403259277,
+                "statistic": -5.243536949157715,
+                "pvalue": 4.965750022727427e-05,
+                "qvalue": 0.004414000020202157,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0001",
+                "log2_fold_change": 1.2309212684631348,
+                "statistic": -5.0604567527771,
+                "pvalue": 7.07777422789361e-05,
+                "qvalue": 0.004718516151929073,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0023",
+                "log2_fold_change": 1.384073257446289,
+                "statistic": -4.995125770568848,
+                "pvalue": 6.0351216105931814e-05,
+                "qvalue": 0.004718516151929073,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0019",
+                "log2_fold_change": 1.8205170631408691,
+                "statistic": -4.912644863128662,
+                "pvalue": 6.69453936927684e-05,
+                "qvalue": 0.004718516151929073,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0040",
+                "log2_fold_change": 1.3468642234802246,
+                "statistic": -4.511422157287598,
+                "pvalue": 0.0001809884131080392,
+                "qvalue": 0.009480214764262517,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0006",
+                "log2_fold_change": 1.5625386238098145,
+                "statistic": -4.529562473297119,
+                "pvalue": 0.00017437701218200177,
+                "qvalue": 0.009480214764262517,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0033",
+                "log2_fold_change": 1.2585868835449219,
+                "statistic": -4.6174445152282715,
+                "pvalue": 0.00016445717457471627,
+                "qvalue": 0.009480214764262517,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0003",
+                "log2_fold_change": 1.1557331085205078,
+                "statistic": -4.6432623863220215,
+                "pvalue": 0.00018960429528525034,
+                "qvalue": 0.009480214764262517,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0021",
+                "log2_fold_change": 1.760274887084961,
+                "statistic": -4.503230571746826,
+                "pvalue": 0.0002254705984120081,
+                "qvalue": 0.009493498880505604,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0029",
+                "log2_fold_change": 1.3473601341247559,
+                "statistic": -4.526648044586182,
+                "pvalue": 0.0002088558393254629,
+                "qvalue": 0.009493498880505604,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0014",
+                "log2_fold_change": 1.6375994682312012,
+                "statistic": -4.454015731811523,
+                "pvalue": 0.00022394954392851823,
+                "qvalue": 0.009493498880505604,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0041",
+                "log2_fold_change": 1.1607913970947266,
+                "statistic": -4.406860828399658,
+                "pvalue": 0.0003146673873760891,
+                "qvalue": 0.012586695495043562,
+                "reject": true
+              }
+            ]
+          },
+          "error": null
+        },
+        {
+          "index": 2,
+          "tool": "pathway_enrichment",
+          "params": {
+            "direction": "up_down",
+            "correction": "fdr_bh"
+          },
+          "description": "Enrichment on ranked genes or DE hits.",
+          "ok": true,
+          "output": {
+            "enriched": [
+              {
+                "pathway": "PLANTED_STRESS",
+                "pathway_size": 45,
+                "overlap": 27,
+                "pvalue": 3.296267967129874e-37,
+                "qvalue": 1.3185071868519495e-36
+              }
+            ],
+            "direction": "up_down",
+            "q_threshold": 0.05,
+            "table_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/pathway_enrichment.csv"
+          },
+          "error": null
+        },
+        {
+          "index": 3,
+          "tool": "plot_volcano",
+          "params": {
+            "fdr_threshold": 0.05
+          },
+          "description": "Visualize effect size vs significance.",
+          "ok": true,
+          "output": {
+            "figure_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/volcano.png"
+          },
+          "error": null
+        }
+      ],
+      "results": {
+        "steps": [
+          {
+            "tool": "profile_dataset",
+            "output": {
+              "n_samples": 24,
+              "n_genes": 800,
+              "group_counts": {
+                "control": 12,
+                "treatment": 12
+              },
+              "missing_fraction": 0.0,
+              "mean_expression_std_across_samples": 0.8584958374010375,
+              "top_variable_genes_head": [
+                "GENE_0039",
+                "GENE_0234",
+                "GENE_0012",
+                "GENE_0037",
+                "GENE_0005"
+              ],
+              "groups_compared": [
+                "control",
+                "treatment"
+              ]
+            },
+            "ok": true
+          },
+          {
+            "tool": "differential_expression",
+            "output": {
+              "table_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/differential_expression.csv",
+              "n_significant_q_0.05": 28,
+              "method": "welch_t",
+              "correction": "fdr_bh",
+              "gpu_accelerated": true,
+              "top_genes_by_q": [
+                {
+                  "gene": "GENE_0016",
+                  "log2_fold_change": 1.7682175636291504,
+                  "statistic": -6.4840407371521,
+                  "pvalue": 6.386063909001045e-06,
+                  "qvalue": 0.002561231689347426,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0036",
+                  "log2_fold_change": 1.7529277801513672,
+                  "statistic": -5.948640823364258,
+                  "pvalue": 6.4030792233685655e-06,
+                  "qvalue": 0.002561231689347426,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0037",
+                  "log2_fold_change": 1.999715805053711,
+                  "statistic": -5.634809494018555,
+                  "pvalue": 1.202692667921513e-05,
+                  "qvalue": 0.0032071804477907017,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0004",
+                  "log2_fold_change": 1.5459322929382324,
+                  "statistic": -5.16774845123291,
+                  "pvalue": 3.7931696907883324e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0018",
+                  "log2_fold_change": 1.8047199249267578,
+                  "statistic": -5.158838748931885,
+                  "pvalue": 4.276473480486987e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0038",
+                  "log2_fold_change": 1.6474676132202148,
+                  "statistic": -5.173120975494385,
+                  "pvalue": 4.2029373719938405e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0012",
+                  "log2_fold_change": 1.9300823211669922,
+                  "statistic": -5.1644134521484375,
+                  "pvalue": 3.6269848838346225e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0000",
+                  "log2_fold_change": 1.5600528717041016,
+                  "statistic": -5.354492664337158,
+                  "pvalue": 2.987186379024969e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0007",
+                  "log2_fold_change": 1.8511252403259277,
+                  "statistic": -5.243536949157715,
+                  "pvalue": 4.965750022727427e-05,
+                  "qvalue": 0.004414000020202157,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0001",
+                  "log2_fold_change": 1.2309212684631348,
+                  "statistic": -5.0604567527771,
+                  "pvalue": 7.07777422789361e-05,
+                  "qvalue": 0.004718516151929073,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0023",
+                  "log2_fold_change": 1.384073257446289,
+                  "statistic": -4.995125770568848,
+                  "pvalue": 6.0351216105931814e-05,
+                  "qvalue": 0.004718516151929073,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0019",
+                  "log2_fold_change": 1.8205170631408691,
+                  "statistic": -4.912644863128662,
+                  "pvalue": 6.69453936927684e-05,
+                  "qvalue": 0.004718516151929073,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0040",
+                  "log2_fold_change": 1.3468642234802246,
+                  "statistic": -4.511422157287598,
+                  "pvalue": 0.0001809884131080392,
+                  "qvalue": 0.009480214764262517,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0006",
+                  "log2_fold_change": 1.5625386238098145,
+                  "statistic": -4.529562473297119,
+                  "pvalue": 0.00017437701218200177,
+                  "qvalue": 0.009480214764262517,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0033",
+                  "log2_fold_change": 1.2585868835449219,
+                  "statistic": -4.6174445152282715,
+                  "pvalue": 0.00016445717457471627,
+                  "qvalue": 0.009480214764262517,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0003",
+                  "log2_fold_change": 1.1557331085205078,
+                  "statistic": -4.6432623863220215,
+                  "pvalue": 0.00018960429528525034,
+                  "qvalue": 0.009480214764262517,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0021",
+                  "log2_fold_change": 1.760274887084961,
+                  "statistic": -4.503230571746826,
+                  "pvalue": 0.0002254705984120081,
+                  "qvalue": 0.009493498880505604,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0029",
+                  "log2_fold_change": 1.3473601341247559,
+                  "statistic": -4.526648044586182,
+                  "pvalue": 0.0002088558393254629,
+                  "qvalue": 0.009493498880505604,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0014",
+                  "log2_fold_change": 1.6375994682312012,
+                  "statistic": -4.454015731811523,
+                  "pvalue": 0.00022394954392851823,
+                  "qvalue": 0.009493498880505604,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0041",
+                  "log2_fold_change": 1.1607913970947266,
+                  "statistic": -4.406860828399658,
+                  "pvalue": 0.0003146673873760891,
+                  "qvalue": 0.012586695495043562,
+                  "reject": true
+                }
+              ]
+            },
+            "ok": true
+          },
+          {
+            "tool": "pathway_enrichment",
+            "output": {
+              "enriched": [
+                {
+                  "pathway": "PLANTED_STRESS",
+                  "pathway_size": 45,
+                  "overlap": 27,
+                  "pvalue": 3.296267967129874e-37,
+                  "qvalue": 1.3185071868519495e-36
+                }
+              ],
+              "direction": "up_down",
+              "q_threshold": 0.05,
+              "table_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/pathway_enrichment.csv"
+            },
+            "ok": true
+          },
+          {
+            "tool": "plot_volcano",
+            "output": {
+              "figure_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/volcano.png"
+            },
+            "ok": true
+          }
+        ],
+        "plan": {
+          "hypothesis_id": "h_mock",
+          "success_criteria": "Significant pathway enrichment or coherent DE pattern matching the biological process named in the hypothesis.",
+          "failure_criteria": "No significant enrichment after multiple-testing correction."
+        }
+      },
+      "interpretation": {
+        "verdict": "supported",
+        "summary": "Observed statistically significant separation consistent with pathway-level differential expression; caveats on confounding remain.",
+        "confidence": 0.72,
+        "posterior": 0.6177237185056472,
+        "follow_ups": [
+          "Validate top hits with orthogonal database evidence",
+          "Check correlation of DE with technical covariates"
+        ],
+        "literature_grounded": false,
+        "source_papers": []
+      },
+      "created_at": "2026-05-24T22:11:20.070036+00:00"
+    },
+    {
+      "id": "exp_aabfa521ba",
+      "hypothesis_id": "hyp_50dd5bc5de",
+      "plan": {
+        "hypothesis_id": "h_mock",
+        "steps": [
+          {
+            "tool": "profile_dataset",
+            "params": {},
+            "description": "Summarize dimensions, groups, and missingness."
+          },
+          {
+            "tool": "differential_expression",
+            "params": {
+              "method": "welch_t",
+              "correction": "fdr_bh"
+            },
+            "description": "Test per-gene differences between groups."
+          },
+          {
+            "tool": "pathway_enrichment",
+            "params": {
+              "direction": "up_down",
+              "correction": "fdr_bh"
+            },
+            "description": "Enrichment on ranked genes or DE hits."
+          },
+          {
+            "tool": "plot_volcano",
+            "params": {
+              "fdr_threshold": 0.05
+            },
+            "description": "Visualize effect size vs significance."
+          }
+        ],
+        "expected_duration": "short",
+        "success_criteria": "Significant pathway enrichment or coherent DE pattern matching the biological process named in the hypothesis.",
+        "failure_criteria": "No significant enrichment after multiple-testing correction."
+      },
+      "execution_trace": [
+        {
+          "index": 0,
+          "tool": "profile_dataset",
+          "params": {},
+          "description": "Summarize dimensions, groups, and missingness.",
+          "ok": true,
+          "output": {
+            "n_samples": 24,
+            "n_genes": 800,
+            "group_counts": {
+              "control": 12,
+              "treatment": 12
+            },
+            "missing_fraction": 0.0,
+            "mean_expression_std_across_samples": 0.8584958374010375,
+            "top_variable_genes_head": [
+              "GENE_0039",
+              "GENE_0234",
+              "GENE_0012",
+              "GENE_0037",
+              "GENE_0005"
+            ],
+            "groups_compared": [
+              "control",
+              "treatment"
+            ]
+          },
+          "error": null
+        },
+        {
+          "index": 1,
+          "tool": "differential_expression",
+          "params": {
+            "method": "welch_t",
+            "correction": "fdr_bh"
+          },
+          "description": "Test per-gene differences between groups.",
+          "ok": true,
+          "output": {
+            "table_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/differential_expression.csv",
+            "n_significant_q_0.05": 28,
+            "method": "welch_t",
+            "correction": "fdr_bh",
+            "gpu_accelerated": true,
+            "top_genes_by_q": [
+              {
+                "gene": "GENE_0016",
+                "log2_fold_change": 1.7682175636291504,
+                "statistic": -6.4840407371521,
+                "pvalue": 6.386063909001045e-06,
+                "qvalue": 0.002561231689347426,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0036",
+                "log2_fold_change": 1.7529277801513672,
+                "statistic": -5.948640823364258,
+                "pvalue": 6.4030792233685655e-06,
+                "qvalue": 0.002561231689347426,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0037",
+                "log2_fold_change": 1.999715805053711,
+                "statistic": -5.634809494018555,
+                "pvalue": 1.202692667921513e-05,
+                "qvalue": 0.0032071804477907017,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0004",
+                "log2_fold_change": 1.5459322929382324,
+                "statistic": -5.16774845123291,
+                "pvalue": 3.7931696907883324e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0018",
+                "log2_fold_change": 1.8047199249267578,
+                "statistic": -5.158838748931885,
+                "pvalue": 4.276473480486987e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0038",
+                "log2_fold_change": 1.6474676132202148,
+                "statistic": -5.173120975494385,
+                "pvalue": 4.2029373719938405e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0012",
+                "log2_fold_change": 1.9300823211669922,
+                "statistic": -5.1644134521484375,
+                "pvalue": 3.6269848838346225e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0000",
+                "log2_fold_change": 1.5600528717041016,
+                "statistic": -5.354492664337158,
+                "pvalue": 2.987186379024969e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0007",
+                "log2_fold_change": 1.8511252403259277,
+                "statistic": -5.243536949157715,
+                "pvalue": 4.965750022727427e-05,
+                "qvalue": 0.004414000020202157,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0001",
+                "log2_fold_change": 1.2309212684631348,
+                "statistic": -5.0604567527771,
+                "pvalue": 7.07777422789361e-05,
+                "qvalue": 0.004718516151929073,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0023",
+                "log2_fold_change": 1.384073257446289,
+                "statistic": -4.995125770568848,
+                "pvalue": 6.0351216105931814e-05,
+                "qvalue": 0.004718516151929073,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0019",
+                "log2_fold_change": 1.8205170631408691,
+                "statistic": -4.912644863128662,
+                "pvalue": 6.69453936927684e-05,
+                "qvalue": 0.004718516151929073,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0040",
+                "log2_fold_change": 1.3468642234802246,
+                "statistic": -4.511422157287598,
+                "pvalue": 0.0001809884131080392,
+                "qvalue": 0.009480214764262517,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0006",
+                "log2_fold_change": 1.5625386238098145,
+                "statistic": -4.529562473297119,
+                "pvalue": 0.00017437701218200177,
+                "qvalue": 0.009480214764262517,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0033",
+                "log2_fold_change": 1.2585868835449219,
+                "statistic": -4.6174445152282715,
+                "pvalue": 0.00016445717457471627,
+                "qvalue": 0.009480214764262517,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0003",
+                "log2_fold_change": 1.1557331085205078,
+                "statistic": -4.6432623863220215,
+                "pvalue": 0.00018960429528525034,
+                "qvalue": 0.009480214764262517,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0021",
+                "log2_fold_change": 1.760274887084961,
+                "statistic": -4.503230571746826,
+                "pvalue": 0.0002254705984120081,
+                "qvalue": 0.009493498880505604,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0029",
+                "log2_fold_change": 1.3473601341247559,
+                "statistic": -4.526648044586182,
+                "pvalue": 0.0002088558393254629,
+                "qvalue": 0.009493498880505604,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0014",
+                "log2_fold_change": 1.6375994682312012,
+                "statistic": -4.454015731811523,
+                "pvalue": 0.00022394954392851823,
+                "qvalue": 0.009493498880505604,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0041",
+                "log2_fold_change": 1.1607913970947266,
+                "statistic": -4.406860828399658,
+                "pvalue": 0.0003146673873760891,
+                "qvalue": 0.012586695495043562,
+                "reject": true
+              }
+            ]
+          },
+          "error": null
+        },
+        {
+          "index": 2,
+          "tool": "pathway_enrichment",
+          "params": {
+            "direction": "up_down",
+            "correction": "fdr_bh"
+          },
+          "description": "Enrichment on ranked genes or DE hits.",
+          "ok": true,
+          "output": {
+            "enriched": [
+              {
+                "pathway": "PLANTED_STRESS",
+                "pathway_size": 45,
+                "overlap": 27,
+                "pvalue": 3.296267967129874e-37,
+                "qvalue": 1.3185071868519495e-36
+              }
+            ],
+            "direction": "up_down",
+            "q_threshold": 0.05,
+            "table_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/pathway_enrichment.csv"
+          },
+          "error": null
+        },
+        {
+          "index": 3,
+          "tool": "plot_volcano",
+          "params": {
+            "fdr_threshold": 0.05
+          },
+          "description": "Visualize effect size vs significance.",
+          "ok": true,
+          "output": {
+            "figure_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/volcano.png"
+          },
+          "error": null
+        }
+      ],
+      "results": {
+        "steps": [
+          {
+            "tool": "profile_dataset",
+            "output": {
+              "n_samples": 24,
+              "n_genes": 800,
+              "group_counts": {
+                "control": 12,
+                "treatment": 12
+              },
+              "missing_fraction": 0.0,
+              "mean_expression_std_across_samples": 0.8584958374010375,
+              "top_variable_genes_head": [
+                "GENE_0039",
+                "GENE_0234",
+                "GENE_0012",
+                "GENE_0037",
+                "GENE_0005"
+              ],
+              "groups_compared": [
+                "control",
+                "treatment"
+              ]
+            },
+            "ok": true
+          },
+          {
+            "tool": "differential_expression",
+            "output": {
+              "table_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/differential_expression.csv",
+              "n_significant_q_0.05": 28,
+              "method": "welch_t",
+              "correction": "fdr_bh",
+              "gpu_accelerated": true,
+              "top_genes_by_q": [
+                {
+                  "gene": "GENE_0016",
+                  "log2_fold_change": 1.7682175636291504,
+                  "statistic": -6.4840407371521,
+                  "pvalue": 6.386063909001045e-06,
+                  "qvalue": 0.002561231689347426,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0036",
+                  "log2_fold_change": 1.7529277801513672,
+                  "statistic": -5.948640823364258,
+                  "pvalue": 6.4030792233685655e-06,
+                  "qvalue": 0.002561231689347426,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0037",
+                  "log2_fold_change": 1.999715805053711,
+                  "statistic": -5.634809494018555,
+                  "pvalue": 1.202692667921513e-05,
+                  "qvalue": 0.0032071804477907017,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0004",
+                  "log2_fold_change": 1.5459322929382324,
+                  "statistic": -5.16774845123291,
+                  "pvalue": 3.7931696907883324e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0018",
+                  "log2_fold_change": 1.8047199249267578,
+                  "statistic": -5.158838748931885,
+                  "pvalue": 4.276473480486987e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0038",
+                  "log2_fold_change": 1.6474676132202148,
+                  "statistic": -5.173120975494385,
+                  "pvalue": 4.2029373719938405e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0012",
+                  "log2_fold_change": 1.9300823211669922,
+                  "statistic": -5.1644134521484375,
+                  "pvalue": 3.6269848838346225e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0000",
+                  "log2_fold_change": 1.5600528717041016,
+                  "statistic": -5.354492664337158,
+                  "pvalue": 2.987186379024969e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0007",
+                  "log2_fold_change": 1.8511252403259277,
+                  "statistic": -5.243536949157715,
+                  "pvalue": 4.965750022727427e-05,
+                  "qvalue": 0.004414000020202157,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0001",
+                  "log2_fold_change": 1.2309212684631348,
+                  "statistic": -5.0604567527771,
+                  "pvalue": 7.07777422789361e-05,
+                  "qvalue": 0.004718516151929073,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0023",
+                  "log2_fold_change": 1.384073257446289,
+                  "statistic": -4.995125770568848,
+                  "pvalue": 6.0351216105931814e-05,
+                  "qvalue": 0.004718516151929073,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0019",
+                  "log2_fold_change": 1.8205170631408691,
+                  "statistic": -4.912644863128662,
+                  "pvalue": 6.69453936927684e-05,
+                  "qvalue": 0.004718516151929073,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0040",
+                  "log2_fold_change": 1.3468642234802246,
+                  "statistic": -4.511422157287598,
+                  "pvalue": 0.0001809884131080392,
+                  "qvalue": 0.009480214764262517,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0006",
+                  "log2_fold_change": 1.5625386238098145,
+                  "statistic": -4.529562473297119,
+                  "pvalue": 0.00017437701218200177,
+                  "qvalue": 0.009480214764262517,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0033",
+                  "log2_fold_change": 1.2585868835449219,
+                  "statistic": -4.6174445152282715,
+                  "pvalue": 0.00016445717457471627,
+                  "qvalue": 0.009480214764262517,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0003",
+                  "log2_fold_change": 1.1557331085205078,
+                  "statistic": -4.6432623863220215,
+                  "pvalue": 0.00018960429528525034,
+                  "qvalue": 0.009480214764262517,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0021",
+                  "log2_fold_change": 1.760274887084961,
+                  "statistic": -4.503230571746826,
+                  "pvalue": 0.0002254705984120081,
+                  "qvalue": 0.009493498880505604,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0029",
+                  "log2_fold_change": 1.3473601341247559,
+                  "statistic": -4.526648044586182,
+                  "pvalue": 0.0002088558393254629,
+                  "qvalue": 0.009493498880505604,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0014",
+                  "log2_fold_change": 1.6375994682312012,
+                  "statistic": -4.454015731811523,
+                  "pvalue": 0.00022394954392851823,
+                  "qvalue": 0.009493498880505604,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0041",
+                  "log2_fold_change": 1.1607913970947266,
+                  "statistic": -4.406860828399658,
+                  "pvalue": 0.0003146673873760891,
+                  "qvalue": 0.012586695495043562,
+                  "reject": true
+                }
+              ]
+            },
+            "ok": true
+          },
+          {
+            "tool": "pathway_enrichment",
+            "output": {
+              "enriched": [
+                {
+                  "pathway": "PLANTED_STRESS",
+                  "pathway_size": 45,
+                  "overlap": 27,
+                  "pvalue": 3.296267967129874e-37,
+                  "qvalue": 1.3185071868519495e-36
+                }
+              ],
+              "direction": "up_down",
+              "q_threshold": 0.05,
+              "table_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/pathway_enrichment.csv"
+            },
+            "ok": true
+          },
+          {
+            "tool": "plot_volcano",
+            "output": {
+              "figure_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/volcano.png"
+            },
+            "ok": true
+          }
+        ],
+        "plan": {
+          "hypothesis_id": "h_mock",
+          "success_criteria": "Significant pathway enrichment or coherent DE pattern matching the biological process named in the hypothesis.",
+          "failure_criteria": "No significant enrichment after multiple-testing correction."
+        }
+      },
+      "interpretation": {
+        "verdict": "supported",
+        "summary": "Observed statistically significant separation consistent with pathway-level differential expression; caveats on confounding remain.",
+        "confidence": 0.72,
+        "posterior": 0.6177237185056472,
+        "follow_ups": [
+          "Validate top hits with orthogonal database evidence",
+          "Check correlation of DE with technical covariates"
+        ],
+        "literature_grounded": false,
+        "source_papers": []
+      },
+      "created_at": "2026-05-24T22:11:21.676211+00:00"
+    },
+    {
+      "id": "exp_34b8c94688",
+      "hypothesis_id": "hyp_e212a80144",
+      "plan": {
+        "hypothesis_id": "h_mock",
+        "steps": [
+          {
+            "tool": "profile_dataset",
+            "params": {},
+            "description": "Summarize dimensions, groups, and missingness."
+          },
+          {
+            "tool": "differential_expression",
+            "params": {
+              "method": "welch_t",
+              "correction": "fdr_bh"
+            },
+            "description": "Test per-gene differences between groups."
+          },
+          {
+            "tool": "pathway_enrichment",
+            "params": {
+              "direction": "up_down",
+              "correction": "fdr_bh"
+            },
+            "description": "Enrichment on ranked genes or DE hits."
+          },
+          {
+            "tool": "plot_volcano",
+            "params": {
+              "fdr_threshold": 0.05
+            },
+            "description": "Visualize effect size vs significance."
+          }
+        ],
+        "expected_duration": "short",
+        "success_criteria": "Significant pathway enrichment or coherent DE pattern matching the biological process named in the hypothesis.",
+        "failure_criteria": "No significant enrichment after multiple-testing correction."
+      },
+      "execution_trace": [
+        {
+          "index": 0,
+          "tool": "profile_dataset",
+          "params": {},
+          "description": "Summarize dimensions, groups, and missingness.",
+          "ok": true,
+          "output": {
+            "n_samples": 24,
+            "n_genes": 800,
+            "group_counts": {
+              "control": 12,
+              "treatment": 12
+            },
+            "missing_fraction": 0.0,
+            "mean_expression_std_across_samples": 0.8584958374010375,
+            "top_variable_genes_head": [
+              "GENE_0039",
+              "GENE_0234",
+              "GENE_0012",
+              "GENE_0037",
+              "GENE_0005"
+            ],
+            "groups_compared": [
+              "control",
+              "treatment"
+            ]
+          },
+          "error": null
+        },
+        {
+          "index": 1,
+          "tool": "differential_expression",
+          "params": {
+            "method": "welch_t",
+            "correction": "fdr_bh"
+          },
+          "description": "Test per-gene differences between groups.",
+          "ok": true,
+          "output": {
+            "table_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/differential_expression.csv",
+            "n_significant_q_0.05": 28,
+            "method": "welch_t",
+            "correction": "fdr_bh",
+            "gpu_accelerated": true,
+            "top_genes_by_q": [
+              {
+                "gene": "GENE_0016",
+                "log2_fold_change": 1.7682175636291504,
+                "statistic": -6.4840407371521,
+                "pvalue": 6.386063909001045e-06,
+                "qvalue": 0.002561231689347426,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0036",
+                "log2_fold_change": 1.7529277801513672,
+                "statistic": -5.948640823364258,
+                "pvalue": 6.4030792233685655e-06,
+                "qvalue": 0.002561231689347426,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0037",
+                "log2_fold_change": 1.999715805053711,
+                "statistic": -5.634809494018555,
+                "pvalue": 1.202692667921513e-05,
+                "qvalue": 0.0032071804477907017,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0004",
+                "log2_fold_change": 1.5459322929382324,
+                "statistic": -5.16774845123291,
+                "pvalue": 3.7931696907883324e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0018",
+                "log2_fold_change": 1.8047199249267578,
+                "statistic": -5.158838748931885,
+                "pvalue": 4.276473480486987e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0038",
+                "log2_fold_change": 1.6474676132202148,
+                "statistic": -5.173120975494385,
+                "pvalue": 4.2029373719938405e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0012",
+                "log2_fold_change": 1.9300823211669922,
+                "statistic": -5.1644134521484375,
+                "pvalue": 3.6269848838346225e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0000",
+                "log2_fold_change": 1.5600528717041016,
+                "statistic": -5.354492664337158,
+                "pvalue": 2.987186379024969e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0007",
+                "log2_fold_change": 1.8511252403259277,
+                "statistic": -5.243536949157715,
+                "pvalue": 4.965750022727427e-05,
+                "qvalue": 0.004414000020202157,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0001",
+                "log2_fold_change": 1.2309212684631348,
+                "statistic": -5.0604567527771,
+                "pvalue": 7.07777422789361e-05,
+                "qvalue": 0.004718516151929073,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0023",
+                "log2_fold_change": 1.384073257446289,
+                "statistic": -4.995125770568848,
+                "pvalue": 6.0351216105931814e-05,
+                "qvalue": 0.004718516151929073,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0019",
+                "log2_fold_change": 1.8205170631408691,
+                "statistic": -4.912644863128662,
+                "pvalue": 6.69453936927684e-05,
+                "qvalue": 0.004718516151929073,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0040",
+                "log2_fold_change": 1.3468642234802246,
+                "statistic": -4.511422157287598,
+                "pvalue": 0.0001809884131080392,
+                "qvalue": 0.009480214764262517,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0006",
+                "log2_fold_change": 1.5625386238098145,
+                "statistic": -4.529562473297119,
+                "pvalue": 0.00017437701218200177,
+                "qvalue": 0.009480214764262517,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0033",
+                "log2_fold_change": 1.2585868835449219,
+                "statistic": -4.6174445152282715,
+                "pvalue": 0.00016445717457471627,
+                "qvalue": 0.009480214764262517,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0003",
+                "log2_fold_change": 1.1557331085205078,
+                "statistic": -4.6432623863220215,
+                "pvalue": 0.00018960429528525034,
+                "qvalue": 0.009480214764262517,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0021",
+                "log2_fold_change": 1.760274887084961,
+                "statistic": -4.503230571746826,
+                "pvalue": 0.0002254705984120081,
+                "qvalue": 0.009493498880505604,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0029",
+                "log2_fold_change": 1.3473601341247559,
+                "statistic": -4.526648044586182,
+                "pvalue": 0.0002088558393254629,
+                "qvalue": 0.009493498880505604,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0014",
+                "log2_fold_change": 1.6375994682312012,
+                "statistic": -4.454015731811523,
+                "pvalue": 0.00022394954392851823,
+                "qvalue": 0.009493498880505604,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0041",
+                "log2_fold_change": 1.1607913970947266,
+                "statistic": -4.406860828399658,
+                "pvalue": 0.0003146673873760891,
+                "qvalue": 0.012586695495043562,
+                "reject": true
+              }
+            ]
+          },
+          "error": null
+        },
+        {
+          "index": 2,
+          "tool": "pathway_enrichment",
+          "params": {
+            "direction": "up_down",
+            "correction": "fdr_bh"
+          },
+          "description": "Enrichment on ranked genes or DE hits.",
+          "ok": true,
+          "output": {
+            "enriched": [
+              {
+                "pathway": "PLANTED_STRESS",
+                "pathway_size": 45,
+                "overlap": 27,
+                "pvalue": 3.296267967129874e-37,
+                "qvalue": 1.3185071868519495e-36
+              }
+            ],
+            "direction": "up_down",
+            "q_threshold": 0.05,
+            "table_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/pathway_enrichment.csv"
+          },
+          "error": null
+        },
+        {
+          "index": 3,
+          "tool": "plot_volcano",
+          "params": {
+            "fdr_threshold": 0.05
+          },
+          "description": "Visualize effect size vs significance.",
+          "ok": true,
+          "output": {
+            "figure_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/volcano.png"
+          },
+          "error": null
+        }
+      ],
+      "results": {
+        "steps": [
+          {
+            "tool": "profile_dataset",
+            "output": {
+              "n_samples": 24,
+              "n_genes": 800,
+              "group_counts": {
+                "control": 12,
+                "treatment": 12
+              },
+              "missing_fraction": 0.0,
+              "mean_expression_std_across_samples": 0.8584958374010375,
+              "top_variable_genes_head": [
+                "GENE_0039",
+                "GENE_0234",
+                "GENE_0012",
+                "GENE_0037",
+                "GENE_0005"
+              ],
+              "groups_compared": [
+                "control",
+                "treatment"
+              ]
+            },
+            "ok": true
+          },
+          {
+            "tool": "differential_expression",
+            "output": {
+              "table_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/differential_expression.csv",
+              "n_significant_q_0.05": 28,
+              "method": "welch_t",
+              "correction": "fdr_bh",
+              "gpu_accelerated": true,
+              "top_genes_by_q": [
+                {
+                  "gene": "GENE_0016",
+                  "log2_fold_change": 1.7682175636291504,
+                  "statistic": -6.4840407371521,
+                  "pvalue": 6.386063909001045e-06,
+                  "qvalue": 0.002561231689347426,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0036",
+                  "log2_fold_change": 1.7529277801513672,
+                  "statistic": -5.948640823364258,
+                  "pvalue": 6.4030792233685655e-06,
+                  "qvalue": 0.002561231689347426,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0037",
+                  "log2_fold_change": 1.999715805053711,
+                  "statistic": -5.634809494018555,
+                  "pvalue": 1.202692667921513e-05,
+                  "qvalue": 0.0032071804477907017,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0004",
+                  "log2_fold_change": 1.5459322929382324,
+                  "statistic": -5.16774845123291,
+                  "pvalue": 3.7931696907883324e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0018",
+                  "log2_fold_change": 1.8047199249267578,
+                  "statistic": -5.158838748931885,
+                  "pvalue": 4.276473480486987e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0038",
+                  "log2_fold_change": 1.6474676132202148,
+                  "statistic": -5.173120975494385,
+                  "pvalue": 4.2029373719938405e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0012",
+                  "log2_fold_change": 1.9300823211669922,
+                  "statistic": -5.1644134521484375,
+                  "pvalue": 3.6269848838346225e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0000",
+                  "log2_fold_change": 1.5600528717041016,
+                  "statistic": -5.354492664337158,
+                  "pvalue": 2.987186379024969e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0007",
+                  "log2_fold_change": 1.8511252403259277,
+                  "statistic": -5.243536949157715,
+                  "pvalue": 4.965750022727427e-05,
+                  "qvalue": 0.004414000020202157,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0001",
+                  "log2_fold_change": 1.2309212684631348,
+                  "statistic": -5.0604567527771,
+                  "pvalue": 7.07777422789361e-05,
+                  "qvalue": 0.004718516151929073,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0023",
+                  "log2_fold_change": 1.384073257446289,
+                  "statistic": -4.995125770568848,
+                  "pvalue": 6.0351216105931814e-05,
+                  "qvalue": 0.004718516151929073,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0019",
+                  "log2_fold_change": 1.8205170631408691,
+                  "statistic": -4.912644863128662,
+                  "pvalue": 6.69453936927684e-05,
+                  "qvalue": 0.004718516151929073,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0040",
+                  "log2_fold_change": 1.3468642234802246,
+                  "statistic": -4.511422157287598,
+                  "pvalue": 0.0001809884131080392,
+                  "qvalue": 0.009480214764262517,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0006",
+                  "log2_fold_change": 1.5625386238098145,
+                  "statistic": -4.529562473297119,
+                  "pvalue": 0.00017437701218200177,
+                  "qvalue": 0.009480214764262517,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0033",
+                  "log2_fold_change": 1.2585868835449219,
+                  "statistic": -4.6174445152282715,
+                  "pvalue": 0.00016445717457471627,
+                  "qvalue": 0.009480214764262517,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0003",
+                  "log2_fold_change": 1.1557331085205078,
+                  "statistic": -4.6432623863220215,
+                  "pvalue": 0.00018960429528525034,
+                  "qvalue": 0.009480214764262517,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0021",
+                  "log2_fold_change": 1.760274887084961,
+                  "statistic": -4.503230571746826,
+                  "pvalue": 0.0002254705984120081,
+                  "qvalue": 0.009493498880505604,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0029",
+                  "log2_fold_change": 1.3473601341247559,
+                  "statistic": -4.526648044586182,
+                  "pvalue": 0.0002088558393254629,
+                  "qvalue": 0.009493498880505604,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0014",
+                  "log2_fold_change": 1.6375994682312012,
+                  "statistic": -4.454015731811523,
+                  "pvalue": 0.00022394954392851823,
+                  "qvalue": 0.009493498880505604,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0041",
+                  "log2_fold_change": 1.1607913970947266,
+                  "statistic": -4.406860828399658,
+                  "pvalue": 0.0003146673873760891,
+                  "qvalue": 0.012586695495043562,
+                  "reject": true
+                }
+              ]
+            },
+            "ok": true
+          },
+          {
+            "tool": "pathway_enrichment",
+            "output": {
+              "enriched": [
+                {
+                  "pathway": "PLANTED_STRESS",
+                  "pathway_size": 45,
+                  "overlap": 27,
+                  "pvalue": 3.296267967129874e-37,
+                  "qvalue": 1.3185071868519495e-36
+                }
+              ],
+              "direction": "up_down",
+              "q_threshold": 0.05,
+              "table_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/pathway_enrichment.csv"
+            },
+            "ok": true
+          },
+          {
+            "tool": "plot_volcano",
+            "output": {
+              "figure_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/volcano.png"
+            },
+            "ok": true
+          }
+        ],
+        "plan": {
+          "hypothesis_id": "h_mock",
+          "success_criteria": "Significant pathway enrichment or coherent DE pattern matching the biological process named in the hypothesis.",
+          "failure_criteria": "No significant enrichment after multiple-testing correction."
+        }
+      },
+      "interpretation": {
+        "verdict": "supported",
+        "summary": "Observed statistically significant separation consistent with pathway-level differential expression; caveats on confounding remain.",
+        "confidence": 0.72,
+        "posterior": 0.6177237185056472,
+        "follow_ups": [
+          "Validate top hits with orthogonal database evidence",
+          "Check correlation of DE with technical covariates"
+        ],
+        "literature_grounded": false,
+        "source_papers": []
+      },
+      "created_at": "2026-05-24T22:11:21.894902+00:00"
+    },
+    {
+      "id": "exp_1629c545cb",
+      "hypothesis_id": "hyp_c791ec0267",
+      "plan": {
+        "hypothesis_id": "h_mock",
+        "steps": [
+          {
+            "tool": "profile_dataset",
+            "params": {},
+            "description": "Summarize dimensions, groups, and missingness."
+          },
+          {
+            "tool": "differential_expression",
+            "params": {
+              "method": "welch_t",
+              "correction": "fdr_bh"
+            },
+            "description": "Test per-gene differences between groups."
+          },
+          {
+            "tool": "pathway_enrichment",
+            "params": {
+              "direction": "up_down",
+              "correction": "fdr_bh"
+            },
+            "description": "Enrichment on ranked genes or DE hits."
+          },
+          {
+            "tool": "plot_volcano",
+            "params": {
+              "fdr_threshold": 0.05
+            },
+            "description": "Visualize effect size vs significance."
+          }
+        ],
+        "expected_duration": "short",
+        "success_criteria": "Significant pathway enrichment or coherent DE pattern matching the biological process named in the hypothesis.",
+        "failure_criteria": "No significant enrichment after multiple-testing correction."
+      },
+      "execution_trace": [
+        {
+          "index": 0,
+          "tool": "profile_dataset",
+          "params": {},
+          "description": "Summarize dimensions, groups, and missingness.",
+          "ok": true,
+          "output": {
+            "n_samples": 24,
+            "n_genes": 800,
+            "group_counts": {
+              "control": 12,
+              "treatment": 12
+            },
+            "missing_fraction": 0.0,
+            "mean_expression_std_across_samples": 0.8584958374010375,
+            "top_variable_genes_head": [
+              "GENE_0039",
+              "GENE_0234",
+              "GENE_0012",
+              "GENE_0037",
+              "GENE_0005"
+            ],
+            "groups_compared": [
+              "control",
+              "treatment"
+            ]
+          },
+          "error": null
+        },
+        {
+          "index": 1,
+          "tool": "differential_expression",
+          "params": {
+            "method": "welch_t",
+            "correction": "fdr_bh"
+          },
+          "description": "Test per-gene differences between groups.",
+          "ok": true,
+          "output": {
+            "table_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/differential_expression.csv",
+            "n_significant_q_0.05": 28,
+            "method": "welch_t",
+            "correction": "fdr_bh",
+            "gpu_accelerated": true,
+            "top_genes_by_q": [
+              {
+                "gene": "GENE_0016",
+                "log2_fold_change": 1.7682175636291504,
+                "statistic": -6.4840407371521,
+                "pvalue": 6.386063909001045e-06,
+                "qvalue": 0.002561231689347426,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0036",
+                "log2_fold_change": 1.7529277801513672,
+                "statistic": -5.948640823364258,
+                "pvalue": 6.4030792233685655e-06,
+                "qvalue": 0.002561231689347426,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0037",
+                "log2_fold_change": 1.999715805053711,
+                "statistic": -5.634809494018555,
+                "pvalue": 1.202692667921513e-05,
+                "qvalue": 0.0032071804477907017,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0004",
+                "log2_fold_change": 1.5459322929382324,
+                "statistic": -5.16774845123291,
+                "pvalue": 3.7931696907883324e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0018",
+                "log2_fold_change": 1.8047199249267578,
+                "statistic": -5.158838748931885,
+                "pvalue": 4.276473480486987e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0038",
+                "log2_fold_change": 1.6474676132202148,
+                "statistic": -5.173120975494385,
+                "pvalue": 4.2029373719938405e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0012",
+                "log2_fold_change": 1.9300823211669922,
+                "statistic": -5.1644134521484375,
+                "pvalue": 3.6269848838346225e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0000",
+                "log2_fold_change": 1.5600528717041016,
+                "statistic": -5.354492664337158,
+                "pvalue": 2.987186379024969e-05,
+                "qvalue": 0.004276473480486987,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0007",
+                "log2_fold_change": 1.8511252403259277,
+                "statistic": -5.243536949157715,
+                "pvalue": 4.965750022727427e-05,
+                "qvalue": 0.004414000020202157,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0001",
+                "log2_fold_change": 1.2309212684631348,
+                "statistic": -5.0604567527771,
+                "pvalue": 7.07777422789361e-05,
+                "qvalue": 0.004718516151929073,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0023",
+                "log2_fold_change": 1.384073257446289,
+                "statistic": -4.995125770568848,
+                "pvalue": 6.0351216105931814e-05,
+                "qvalue": 0.004718516151929073,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0019",
+                "log2_fold_change": 1.8205170631408691,
+                "statistic": -4.912644863128662,
+                "pvalue": 6.69453936927684e-05,
+                "qvalue": 0.004718516151929073,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0040",
+                "log2_fold_change": 1.3468642234802246,
+                "statistic": -4.511422157287598,
+                "pvalue": 0.0001809884131080392,
+                "qvalue": 0.009480214764262517,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0006",
+                "log2_fold_change": 1.5625386238098145,
+                "statistic": -4.529562473297119,
+                "pvalue": 0.00017437701218200177,
+                "qvalue": 0.009480214764262517,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0033",
+                "log2_fold_change": 1.2585868835449219,
+                "statistic": -4.6174445152282715,
+                "pvalue": 0.00016445717457471627,
+                "qvalue": 0.009480214764262517,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0003",
+                "log2_fold_change": 1.1557331085205078,
+                "statistic": -4.6432623863220215,
+                "pvalue": 0.00018960429528525034,
+                "qvalue": 0.009480214764262517,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0021",
+                "log2_fold_change": 1.760274887084961,
+                "statistic": -4.503230571746826,
+                "pvalue": 0.0002254705984120081,
+                "qvalue": 0.009493498880505604,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0029",
+                "log2_fold_change": 1.3473601341247559,
+                "statistic": -4.526648044586182,
+                "pvalue": 0.0002088558393254629,
+                "qvalue": 0.009493498880505604,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0014",
+                "log2_fold_change": 1.6375994682312012,
+                "statistic": -4.454015731811523,
+                "pvalue": 0.00022394954392851823,
+                "qvalue": 0.009493498880505604,
+                "reject": true
+              },
+              {
+                "gene": "GENE_0041",
+                "log2_fold_change": 1.1607913970947266,
+                "statistic": -4.406860828399658,
+                "pvalue": 0.0003146673873760891,
+                "qvalue": 0.012586695495043562,
+                "reject": true
+              }
+            ]
+          },
+          "error": null
+        },
+        {
+          "index": 2,
+          "tool": "pathway_enrichment",
+          "params": {
+            "direction": "up_down",
+            "correction": "fdr_bh"
+          },
+          "description": "Enrichment on ranked genes or DE hits.",
+          "ok": true,
+          "output": {
+            "enriched": [
+              {
+                "pathway": "PLANTED_STRESS",
+                "pathway_size": 45,
+                "overlap": 27,
+                "pvalue": 3.296267967129874e-37,
+                "qvalue": 1.3185071868519495e-36
+              }
+            ],
+            "direction": "up_down",
+            "q_threshold": 0.05,
+            "table_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/pathway_enrichment.csv"
+          },
+          "error": null
+        },
+        {
+          "index": 3,
+          "tool": "plot_volcano",
+          "params": {
+            "fdr_threshold": 0.05
+          },
+          "description": "Visualize effect size vs significance.",
+          "ok": true,
+          "output": {
+            "figure_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/volcano.png"
+          },
+          "error": null
+        }
+      ],
+      "results": {
+        "steps": [
+          {
+            "tool": "profile_dataset",
+            "output": {
+              "n_samples": 24,
+              "n_genes": 800,
+              "group_counts": {
+                "control": 12,
+                "treatment": 12
+              },
+              "missing_fraction": 0.0,
+              "mean_expression_std_across_samples": 0.8584958374010375,
+              "top_variable_genes_head": [
+                "GENE_0039",
+                "GENE_0234",
+                "GENE_0012",
+                "GENE_0037",
+                "GENE_0005"
+              ],
+              "groups_compared": [
+                "control",
+                "treatment"
+              ]
+            },
+            "ok": true
+          },
+          {
+            "tool": "differential_expression",
+            "output": {
+              "table_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/differential_expression.csv",
+              "n_significant_q_0.05": 28,
+              "method": "welch_t",
+              "correction": "fdr_bh",
+              "gpu_accelerated": true,
+              "top_genes_by_q": [
+                {
+                  "gene": "GENE_0016",
+                  "log2_fold_change": 1.7682175636291504,
+                  "statistic": -6.4840407371521,
+                  "pvalue": 6.386063909001045e-06,
+                  "qvalue": 0.002561231689347426,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0036",
+                  "log2_fold_change": 1.7529277801513672,
+                  "statistic": -5.948640823364258,
+                  "pvalue": 6.4030792233685655e-06,
+                  "qvalue": 0.002561231689347426,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0037",
+                  "log2_fold_change": 1.999715805053711,
+                  "statistic": -5.634809494018555,
+                  "pvalue": 1.202692667921513e-05,
+                  "qvalue": 0.0032071804477907017,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0004",
+                  "log2_fold_change": 1.5459322929382324,
+                  "statistic": -5.16774845123291,
+                  "pvalue": 3.7931696907883324e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0018",
+                  "log2_fold_change": 1.8047199249267578,
+                  "statistic": -5.158838748931885,
+                  "pvalue": 4.276473480486987e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0038",
+                  "log2_fold_change": 1.6474676132202148,
+                  "statistic": -5.173120975494385,
+                  "pvalue": 4.2029373719938405e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0012",
+                  "log2_fold_change": 1.9300823211669922,
+                  "statistic": -5.1644134521484375,
+                  "pvalue": 3.6269848838346225e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0000",
+                  "log2_fold_change": 1.5600528717041016,
+                  "statistic": -5.354492664337158,
+                  "pvalue": 2.987186379024969e-05,
+                  "qvalue": 0.004276473480486987,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0007",
+                  "log2_fold_change": 1.8511252403259277,
+                  "statistic": -5.243536949157715,
+                  "pvalue": 4.965750022727427e-05,
+                  "qvalue": 0.004414000020202157,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0001",
+                  "log2_fold_change": 1.2309212684631348,
+                  "statistic": -5.0604567527771,
+                  "pvalue": 7.07777422789361e-05,
+                  "qvalue": 0.004718516151929073,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0023",
+                  "log2_fold_change": 1.384073257446289,
+                  "statistic": -4.995125770568848,
+                  "pvalue": 6.0351216105931814e-05,
+                  "qvalue": 0.004718516151929073,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0019",
+                  "log2_fold_change": 1.8205170631408691,
+                  "statistic": -4.912644863128662,
+                  "pvalue": 6.69453936927684e-05,
+                  "qvalue": 0.004718516151929073,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0040",
+                  "log2_fold_change": 1.3468642234802246,
+                  "statistic": -4.511422157287598,
+                  "pvalue": 0.0001809884131080392,
+                  "qvalue": 0.009480214764262517,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0006",
+                  "log2_fold_change": 1.5625386238098145,
+                  "statistic": -4.529562473297119,
+                  "pvalue": 0.00017437701218200177,
+                  "qvalue": 0.009480214764262517,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0033",
+                  "log2_fold_change": 1.2585868835449219,
+                  "statistic": -4.6174445152282715,
+                  "pvalue": 0.00016445717457471627,
+                  "qvalue": 0.009480214764262517,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0003",
+                  "log2_fold_change": 1.1557331085205078,
+                  "statistic": -4.6432623863220215,
+                  "pvalue": 0.00018960429528525034,
+                  "qvalue": 0.009480214764262517,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0021",
+                  "log2_fold_change": 1.760274887084961,
+                  "statistic": -4.503230571746826,
+                  "pvalue": 0.0002254705984120081,
+                  "qvalue": 0.009493498880505604,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0029",
+                  "log2_fold_change": 1.3473601341247559,
+                  "statistic": -4.526648044586182,
+                  "pvalue": 0.0002088558393254629,
+                  "qvalue": 0.009493498880505604,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0014",
+                  "log2_fold_change": 1.6375994682312012,
+                  "statistic": -4.454015731811523,
+                  "pvalue": 0.00022394954392851823,
+                  "qvalue": 0.009493498880505604,
+                  "reject": true
+                },
+                {
+                  "gene": "GENE_0041",
+                  "log2_fold_change": 1.1607913970947266,
+                  "statistic": -4.406860828399658,
+                  "pvalue": 0.0003146673873760891,
+                  "qvalue": 0.012586695495043562,
+                  "reject": true
+                }
+              ]
+            },
+            "ok": true
+          },
+          {
+            "tool": "pathway_enrichment",
+            "output": {
+              "enriched": [
+                {
+                  "pathway": "PLANTED_STRESS",
+                  "pathway_size": 45,
+                  "overlap": 27,
+                  "pvalue": 3.296267967129874e-37,
+                  "qvalue": 1.3185071868519495e-36
+                }
+              ],
+              "direction": "up_down",
+              "q_threshold": 0.05,
+              "table_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/pathway_enrichment.csv"
+            },
+            "ok": true
+          },
+          {
+            "tool": "plot_volcano",
+            "output": {
+              "figure_path": "/home/builder/workspace/ai-bio-portfolio/agentic-scientific-discovery/examples/gene_expression_investigation/session_demo/outputs/volcano.png"
+            },
+            "ok": true
+          }
+        ],
+        "plan": {
+          "hypothesis_id": "h_mock",
+          "success_criteria": "Significant pathway enrichment or coherent DE pattern matching the biological process named in the hypothesis.",
+          "failure_criteria": "No significant enrichment after multiple-testing correction."
+        }
+      },
+      "interpretation": {
+        "verdict": "supported",
+        "summary": "Observed statistically significant separation consistent with pathway-level differential expression; caveats on confounding remain.",
+        "confidence": 0.72,
+        "posterior": 0.6177237185056472,
+        "follow_ups": [
+          "Validate top hits with orthogonal database evidence",
+          "Check correlation of DE with technical covariates"
+        ],
+        "literature_grounded": false,
+        "source_papers": []
+      },
+      "created_at": "2026-05-24T22:11:24.086723+00:00"
+    }
+  ]
+}

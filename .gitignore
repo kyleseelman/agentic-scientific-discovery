@@ -1,0 +1,40 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Data & model artifacts
+outputs/
+research_sessions/
+*.pkl
+*.pt
+*.npy
+*.h5
+*.hdf5
+*.safetensors
+
+# Downloaded datasets
+data/cache/
+data/geo_cache/
+data/msigdb_cache/
+*.soft.gz
+*.gmt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+.mplconfig/
