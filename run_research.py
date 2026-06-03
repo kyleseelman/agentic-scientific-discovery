@@ -2,7 +2,11 @@
 """Run a novel research investigation from the command line.
 
 This is the main entry point for running autonomous research. There are
-two modes:
+three modes:
+
+**Feed mode (--feed)**: Ingest the agent_feed.json from the
+bio-literature-scanner. The agent reviews scored papers, selects
+the most promising one, and runs a full investigation autonomously.
 
 **Autonomous mode (--topic)**: Give a broad topic and the agent reads
 papers, identifies gaps, formulates its own research questions, finds
@@ -12,15 +16,20 @@ a GEO dataset, and runs the full investigation — no human input needed.
 dataset for more controlled investigations.
 
 Usage:
+    # FEED: Consume daily literature scanner output
+    python run_research.py \
+        --feed ../bio-literature-scanner/agent_feed.json \
+        --provider ollama --model qwen2.5:7b
+
+    # FEED: Only investigate papers above score 8.0
+    python run_research.py \
+        --feed ../bio-literature-scanner/agent_feed.json \
+        --feed-min-score 8.0 --provider openai --model gpt-4o-mini
+
     # AUTONOMOUS: Just give a topic — the agent does everything
     python run_research.py \
         --topic "Alzheimer's disease" \
         --provider ollama --model qwen2.5:7b
-
-    # AUTONOMOUS: More specific topic
-    python run_research.py \
-        --topic "drug resistance in triple-negative breast cancer" \
-        --provider openai --model gpt-4o-mini
 
     # DIRECTED: Specify question + dataset
     python run_research.py \
@@ -66,6 +75,12 @@ def parse_args() -> argparse.Namespace:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
     )
+    p.add_argument("--feed", "-f", type=str,
+                    help="Path to agent_feed.json from bio-literature-scanner (feed mode)")
+    p.add_argument("--feed-min-score", type=float, default=7.0,
+                    help="Minimum overall score to consider a paper from the feed (default: 7.0)")
+    p.add_argument("--feed-topic", type=str, default=None,
+                    help="Only investigate papers from this topic in the feed")
     p.add_argument("--topic", "-t", type=str,
                     help="Broad topic — agent reads papers, finds gaps, generates questions (autonomous mode)")
     p.add_argument("--question", "-q", type=str,
@@ -315,6 +330,11 @@ def main() -> None:
     cfg = get_config()
     llm = create_llm_backend(cfg)
 
+    # ---- Feed mode: ingest scanner output ----
+    if args.feed:
+        run_from_feed(args, llm, cfg, output_dir)
+        return
+
     # ---- Autonomous mode: discover questions from literature ----
     if args.topic:
         run_autonomous(args, llm, cfg, output_dir)
@@ -322,13 +342,198 @@ def main() -> None:
 
     # ---- Directed mode: user specifies question + dataset ----
     if not args.question:
-        print("Error: provide --topic (autonomous) or --question + --geo (directed), or --demo")
+        print("Error: provide --feed, --topic (autonomous), --question + --geo (directed), or --demo")
         sys.exit(1)
     if not args.geo:
         print("Error: --geo is required in directed mode (e.g. --geo GSE5281)")
         sys.exit(1)
 
     run_directed(args, llm, cfg, output_dir)
+
+
+def run_from_feed(args, llm, cfg, output_dir: Path) -> None:
+    """Feed mode: ingest bio-literature-scanner output, pick the best paper, investigate."""
+    feed_path = Path(args.feed)
+    if not feed_path.exists():
+        print(f"Error: feed file not found: {feed_path}")
+        sys.exit(1)
+
+    feed = json.loads(feed_path.read_text())
+
+    print("=" * 70)
+    print("  LITERATURE FEED INGESTION")
+    print("=" * 70)
+    print(f"  Feed: {feed_path}")
+    print(f"  Generated: {feed.get('generated_at', 'unknown')}")
+    print(f"  Total papers in feed: {feed.get('total_papers', 0)}")
+    print(f"  Min score filter: {args.feed_min_score}")
+    if args.feed_topic:
+        print(f"  Topic filter: {args.feed_topic}")
+    print()
+
+    # Collect candidate papers from all topics
+    candidates: list[dict] = []
+    topics_data = feed.get("topics", {})
+    for topic_name, papers in topics_data.items():
+        if args.feed_topic and args.feed_topic.lower() not in topic_name.lower():
+            continue
+        for paper in papers:
+            score = paper.get("score", 0)
+            if score >= args.feed_min_score:
+                paper["_topic"] = topic_name
+                candidates.append(paper)
+
+    candidates.sort(key=lambda p: p.get("research_potential", 0), reverse=True)
+
+    if not candidates:
+        print(f"  No papers above score {args.feed_min_score} in the feed.")
+        print("  Lower the threshold with --feed-min-score or run a new scan.")
+        sys.exit(0)
+
+    print(f"  {len(candidates)} papers above threshold:\n")
+    for i, p in enumerate(candidates[:10], 1):
+        rp = p.get("research_potential", 0)
+        print(f"  [{i}] [{p.get('score', 0):.1f} / rp:{rp:.0f}] {p['title'][:75]}...")
+        if p.get("suggested_question"):
+            print(f"      Q: {p['suggested_question'][:90]}...")
+        print()
+
+    # Use LLM to pick the most promising paper and formulate a research plan
+    selection_prompt = f"""You are a research agent reviewing today's literature feed.
+Below are the top-scoring papers. Pick the ONE paper with the highest potential
+for a novel computational biology investigation using public gene expression data.
+
+Papers:
+"""
+    for i, p in enumerate(candidates[:8], 1):
+        selection_prompt += f"""
+{i}. [{p.get('score', 0):.1f}] {p['title']}
+   Topic: {p.get('_topic', '?')}
+   Abstract: {p.get('abstract', '')[:300]}...
+   Suggested question: {p.get('suggested_question', 'none')}
+"""
+
+    selection_prompt += """
+Return JSON:
+{
+  "selected_index": <1-based index>,
+  "research_question": "Your refined research question based on this paper",
+  "rationale": "Why this paper is the best candidate",
+  "suggested_geo": "A GEO accession to search for (e.g. GSE12345), or empty string",
+  "search_terms": "GEO search terms to find a relevant dataset"
+}"""
+
+    print("  Agent is reviewing papers and selecting the best candidate...\n")
+    response = llm.generate(
+        selection_prompt,
+        system="You are a computational biology research agent. Return valid JSON.",
+        temperature=0.3,
+    )
+
+    # Parse selection
+    start = response.find("{")
+    end = response.rfind("}")
+    selected_idx = 0
+    research_question = ""
+    geo_hint = ""
+
+    if start != -1 and end != -1:
+        try:
+            sel = json.loads(response[start:end + 1])
+            selected_idx = int(sel.get("selected_index", 1)) - 1
+            research_question = sel.get("research_question", "")
+            geo_hint = sel.get("suggested_geo", "")
+            rationale = sel.get("rationale", "")
+            search_terms = sel.get("search_terms", "")
+            print(f"  Selected: Paper #{selected_idx + 1}")
+            print(f"  Rationale: {rationale[:120]}...")
+            print(f"  Research question: {research_question[:120]}...")
+            if geo_hint:
+                print(f"  Suggested GEO: {geo_hint}")
+        except (json.JSONDecodeError, ValueError):
+            pass
+
+    selected_idx = max(0, min(selected_idx, len(candidates) - 1))
+    selected_paper = candidates[selected_idx]
+
+    if not research_question:
+        research_question = selected_paper.get("suggested_question", selected_paper["title"])
+
+    # Try the suggested GEO accession, or search for one
+    from src.agent.question_discovery import search_geo_datasets
+
+    expression = groups = metadata = None
+    geo_to_try: list[str] = []
+
+    if geo_hint and geo_hint.startswith("GSE"):
+        geo_to_try.append(geo_hint)
+
+    # Also search GEO for relevant datasets
+    search_q = search_terms if 'search_terms' in dir() and search_terms else research_question[:80]
+    print(f"\n  Searching GEO for datasets related to the question...")
+    try:
+        geo_results = search_geo_datasets(search_q, max_results=5)
+        for gr in geo_results:
+            acc = gr.get("accession", "")
+            if acc.startswith("GSE") and acc not in geo_to_try:
+                geo_to_try.append(acc)
+                if len(geo_to_try) >= 5:
+                    break
+        if geo_results:
+            print(f"  Found {len(geo_results)} potential datasets: {[g.get('accession','') for g in geo_results[:5]]}")
+    except Exception as e:
+        print(f"  GEO search failed: {e}")
+
+    for acc in geo_to_try:
+        print(f"\n  Trying {acc}...")
+        try:
+            expression, groups, metadata = load_geo_dataset(
+                acc,
+                group_column=args.group_column,
+                control_label=args.control,
+                treatment_label=args.treatment,
+            )
+            print(f"  Loaded: {expression.shape[0]} genes x {expression.shape[1]} samples")
+            print(f"  Groups: {dict(groups.value_counts())}")
+            break
+        except Exception as e:
+            print(f"  Failed: {e}")
+            continue
+
+    if expression is None:
+        print("\n  Could not load any dataset for this paper.")
+        print("  The agent's selection and question have been saved.")
+        print("  You can run manually with:")
+        print(f"    python run_research.py --question \"{research_question[:80]}...\" --geo <accession>")
+        feed_selection = {
+            "selected_paper": selected_paper,
+            "research_question": research_question,
+            "attempted_datasets": geo_to_try,
+        }
+        (output_dir / "feed_selection.json").write_text(json.dumps(feed_selection, indent=2))
+        sys.exit(0)
+
+    try:
+        pathways = load_msigdb_collection(args.pathways)
+        print(f"  Pathways: {len(pathways)} {args.pathways} sets")
+    except Exception:
+        pathways = {}
+
+    print()
+    run_pipeline(
+        question=research_question,
+        expression=expression,
+        groups=groups,
+        metadata=metadata,
+        pathways=pathways,
+        llm=llm,
+        cfg=cfg,
+        output_dir=output_dir,
+        max_cycles=args.cycles,
+        organism=args.organism,
+        tissue=args.tissue,
+        condition=args.condition,
+    )
 
 
 def run_autonomous(args, llm, cfg, output_dir: Path) -> None:

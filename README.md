@@ -381,6 +381,46 @@ pip install -r requirements.txt
 # PyTorch (CPU): pip install torch --index-url https://download.pytorch.org/whl/cpu
 ```
 
+### Feed Mode: Ingest Daily Literature Scanner
+
+Connect to the [bio-literature-scanner](https://github.com/kyleseelman/bio-literature-scanner) for automated paper-to-research pipelines. The scanner scores papers daily; this agent ingests the feed, selects the most promising paper, and runs a full investigation:
+
+```bash
+# Consume the scanner's output — agent picks the best paper and investigates
+python run_research.py \
+    --feed ../bio-literature-scanner/agent_feed.json \
+    --provider ollama --model qwen2.5:7b
+
+# Only investigate papers scoring above 8.0
+python run_research.py \
+    --feed ../bio-literature-scanner/agent_feed.json \
+    --feed-min-score 8.0 --provider openai --model gpt-4o-mini
+
+# Filter to a specific topic from the feed
+python run_research.py \
+    --feed ../bio-literature-scanner/agent_feed.json \
+    --feed-topic "Cancer Immunotherapy" --provider ollama --model qwen2.5:7b
+
+# The agent will:
+# 1. Read all scored papers from the feed
+# 2. Use the LLM to select the most promising paper for investigation
+# 3. Search GEO for relevant expression datasets
+# 4. Run the full research pipeline (hypotheses → experiments → analysis → report)
+```
+
+**Full daily workflow:**
+
+```bash
+# Step 1: Scan for new papers (in bio-literature-scanner/)
+cd bio-literature-scanner
+python scan_now.py --provider ollama --model qwen2.5:7b --feed
+
+# Step 2: Feed results to research agent (in agentic-scientific-discovery/)
+cd ../agentic-scientific-discovery
+python run_research.py --feed ../bio-literature-scanner/agent_feed.json \
+    --provider ollama --model qwen2.5:7b
+```
+
 ### Autonomous Mode: Give a Topic, Agent Does Everything
 
 The agent reads recent papers, identifies knowledge gaps, formulates novel research questions, finds relevant GEO datasets, and runs the full investigation — no human input beyond the topic:
@@ -425,19 +465,22 @@ python run_research.py --demo  # No API keys, synthetic data, mock LLM
 
 | Argument | Mode | Description |
 |----------|------|-------------|
+| `--feed` / `-f` | Feed | Path to `agent_feed.json` from bio-literature-scanner |
+| `--feed-min-score` | Feed | Minimum score to consider (default: 7.0) |
+| `--feed-topic` | Feed | Only investigate papers from this topic |
 | `--topic` / `-t` | Autonomous | Broad topic — agent discovers questions from literature |
 | `--question` / `-q` | Directed | Specific research question |
 | `--geo` / `-g` | Directed | GEO accession (e.g. GSE5281) |
-| `--provider` | Both | LLM backend: mock, ollama, openai, huggingface |
-| `--model` | Both | Model name for chosen provider |
-| `--group-column` | Both | Metadata field for grouping (auto-detected if omitted) |
-| `--control` | Both | Control group label |
-| `--treatment` | Both | Treatment group label |
-| `--cycles` | Both | Max research cycles (default: 3) |
-| `--output-dir` / `-o` | Both | Output directory (default: ./research_output) |
-| `--organism` | Both | Organism (default: Homo sapiens) |
-| `--tissue` | Both | Tissue type for literature queries |
-| `--condition` | Both | Disease/condition for literature queries |
+| `--provider` | All | LLM backend: mock, ollama, openai, huggingface |
+| `--model` | All | Model name for chosen provider |
+| `--group-column` | All | Metadata field for grouping (auto-detected if omitted) |
+| `--control` | All | Control group label |
+| `--treatment` | All | Treatment group label |
+| `--cycles` | All | Max research cycles (default: 3) |
+| `--output-dir` / `-o` | All | Output directory (default: ./research_output) |
+| `--organism` | All | Organism (default: Homo sapiens) |
+| `--tissue` | All | Tissue type for literature queries |
+| `--condition` | All | Disease/condition for literature queries |
 | `--demo` | — | Run demo with mock LLM + synthetic data |
 
 ### Run Pre-Built Examples
