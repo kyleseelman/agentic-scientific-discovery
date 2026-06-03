@@ -375,28 +375,110 @@ The tools gracefully degrade if the KG project is not installed — they return 
 ## Quick Start
 
 ```bash
-# 1. Run with mock LLM (no API keys needed, demonstrates full pipeline)
-python examples/cellular_senescence/run.py
-
-# 2. Run with a local model
-export LLM_PROVIDER=huggingface
-export HF_MODEL=Qwen/Qwen2.5-7B-Instruct
-export HF_MAX_NEW_TOKENS=2048
-python examples/cellular_senescence/run.py
-
-# 3. Run with Ollama
-ollama pull qwen2.5:7b
-export LLM_PROVIDER=ollama
-export OLLAMA_MODEL=qwen2.5:7b
-python examples/cellular_senescence/run.py
-
-# 4. Run with OpenAI
-export LLM_PROVIDER=openai
-export OPENAI_API_KEY=sk-...
-python examples/alzheimers_neuroinflammation/run.py
+# Install dependencies
+pip install -r requirements.txt
+# PyTorch (GPU): pip install torch --index-url https://download.pytorch.org/whl/cu121
+# PyTorch (CPU): pip install torch --index-url https://download.pytorch.org/whl/cpu
 ```
 
+### Autonomous Mode: Give a Topic, Agent Does Everything
+
+The agent reads recent papers, identifies knowledge gaps, formulates novel research questions, finds relevant GEO datasets, and runs the full investigation — no human input beyond the topic:
+
+```bash
+# Just give a topic — the agent reads papers, finds gaps, generates questions, picks data
+python run_research.py --topic "Alzheimer's disease" \
+    --provider ollama --model qwen2.5:7b
+
+# More specific topics work too
+python run_research.py --topic "drug resistance in triple-negative breast cancer" \
+    --provider openai --model gpt-4o-mini
+
+# The agent will:
+# 1. Search PubMed + bioRxiv for recent papers on your topic
+# 2. Extract key findings, gaps, and future directions from each paper
+# 3. Search GEO for relevant expression datasets
+# 4. Use the LLM to synthesize novel research questions that address gaps
+# 5. Select the most promising (question, dataset) pair
+# 6. Run the full research pipeline (hypotheses → experiments → analysis → report)
+```
+
+### Directed Mode: Specify Question + Dataset
+
+For more control, provide a specific question and dataset:
+
+```bash
+python run_research.py \
+    --question "What are the shared mechanisms between diabetes and Alzheimer's?" \
+    --geo GSE5281 --group-column "disease state" \
+    --control normal --treatment "Alzheimer's Disease" \
+    --provider openai --model gpt-4o-mini
+```
+
+### Demo Mode
+
+```bash
+python run_research.py --demo  # No API keys, synthetic data, mock LLM
+```
+
+### CLI Arguments
+
+| Argument | Mode | Description |
+|----------|------|-------------|
+| `--topic` / `-t` | Autonomous | Broad topic — agent discovers questions from literature |
+| `--question` / `-q` | Directed | Specific research question |
+| `--geo` / `-g` | Directed | GEO accession (e.g. GSE5281) |
+| `--provider` | Both | LLM backend: mock, ollama, openai, huggingface |
+| `--model` | Both | Model name for chosen provider |
+| `--group-column` | Both | Metadata field for grouping (auto-detected if omitted) |
+| `--control` | Both | Control group label |
+| `--treatment` | Both | Treatment group label |
+| `--cycles` | Both | Max research cycles (default: 3) |
+| `--output-dir` / `-o` | Both | Output directory (default: ./research_output) |
+| `--organism` | Both | Organism (default: Homo sapiens) |
+| `--tissue` | Both | Tissue type for literature queries |
+| `--condition` | Both | Disease/condition for literature queries |
+| `--demo` | — | Run demo with mock LLM + synthetic data |
+
+### Run Pre-Built Examples
+
+```bash
+# Set your LLM backend first
+export LLM_PROVIDER=ollama
+export OLLAMA_MODEL=qwen2.5:7b
+
+# Run any example
+python examples/novel_research/run.py              # T2D-Alzheimer's molecular link (has sample results)
+python examples/cellular_senescence/run.py          # Cellular senescence mechanisms
+python examples/alzheimers_neuroinflammation/run.py # Neuroinflammation in AD
+python examples/cancer_immunotherapy/run.py         # Anti-PD1 response in melanoma
+
+# Or with mock LLM (no API keys, for testing the pipeline)
+export LLM_PROVIDER=mock
+python examples/cellular_senescence/run.py
+```
+
+## Novel Research Example: T2D-Alzheimer's Molecular Link
+
+The `examples/novel_research/` directory contains a completed research investigation — the system autonomously investigated shared molecular mechanisms between type 2 diabetes and Alzheimer's disease using real data.
+
+**What it did across 3 research cycles:**
+- Searched PubMed and found 5 relevant papers (including MMP9 as shared immune gene, lncRNA dynamics in AD)
+- Generated 9 testable hypotheses (insulin signaling, MMP9 inflammation, OXPHOS suppression, sleep/glymphatic disruption)
+- Ran differential expression on 21,655 genes × 161 samples (GSE5281), finding 6,378 significant genes (FDR<0.05)
+- Identified 17 enriched pathways including IFN-gamma (q=7.36e-6), TNFa/NFkB (q=7.36e-6), PI3K-AKT-mTOR (q=3.3e-3)
+- Applied adversarial review to each cycle, downgrading unsupported claims
+- Produced a full scientific report with citations
+
+**Key files included in the repo:**
+- `examples/novel_research/research_report.md` — Full scientific report
+- `examples/novel_research/run_summary.json` — Structured results (hypotheses, findings, confidence scores)
+- `examples/novel_research/outputs/volcano.png` — Volcano plot of differential expression
+- `examples/novel_research/outputs/box_MMP9.png` — MMP9 expression comparison
+- `examples/novel_research/outputs/pathway_enrichment.csv` — Enriched pathways
+
 **Available examples:**
+- `examples/novel_research/` — T2D-Alzheimer's link (completed, with results)
 - `examples/cellular_senescence/` — Cellular senescence gene expression analysis
 - `examples/alzheimers_neuroinflammation/` — Alzheimer's neuroinflammation investigation
 - `examples/cancer_immunotherapy/` — Cancer immunotherapy response markers
@@ -448,11 +530,13 @@ agentic-scientific-discovery/
 │   │   └── hf_loader.py             # HuggingFace Datasets loading
 │   └── utils/
 │       └── json_extract.py          # Robust JSON extraction from LLM output
+├── run_research.py                  # CLI entry point for running any research question
 ├── examples/
-│   ├── cellular_senescence/         # Full working example with session outputs
+│   ├── novel_research/              # Completed T2D-Alzheimer's investigation with results
+│   ├── cellular_senescence/         # Cellular senescence example
 │   ├── alzheimers_neuroinflammation/
 │   ├── cancer_immunotherapy/
 │   └── gene_expression_investigation/
-├── tests/
-└── pyproject.toml
+├── requirements.txt
+└── tests/
 ```

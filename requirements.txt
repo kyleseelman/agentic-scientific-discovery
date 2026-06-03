@@ -1,19 +1,31 @@
-# Agentic Scientific Discovery — pinned for reproducibility
-numpy==2.2.4
-pandas==2.2.3
-scipy==1.15.2
-scikit-learn==1.6.1
-matplotlib==3.10.1
-requests==2.32.3
-python-dotenv==1.0.1
-typing_extensions==4.13.2
-statsmodels==0.14.4
+# Agentic Scientific Discovery — dependencies
+numpy>=1.24
+pandas>=2.0
+scipy>=1.10
+scikit-learn>=1.3
+matplotlib>=3.7
+requests>=2.28
+python-dotenv>=1.0
+statsmodels>=0.14
 
-# GPU support — sentence-transformers for GPU-accelerated embeddings
-sentence-transformers>=3.0.0
+# GEO dataset loading
+GEOparse>=2.0
 
-# Optional: OpenAI (install only if using OpenAI backend)
-# openai==1.70.0
+# LLM backends (install the one you need)
+openai>=1.0           # For OpenAI or gateway backends
+# ollama               # For Ollama backend (optional, uses requests)
 
-# GPU: PyTorch + transformers are expected as system packages or installed separately
-# pip install torch --index-url https://download.pytorch.org/whl/cu130
+# Embeddings & retrieval
+sentence-transformers>=3.0
+
+# HuggingFace model support (for local LLMs and fine-tuning)
+transformers>=4.36
+huggingface-hub>=0.20
+datasets>=2.16
+accelerate>=0.25
+
+# GPU: PyTorch is required for ML tools, neural networks, and GPU-accelerated DE
+# Install separately for your CUDA version:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu121
+# Or CPU-only:
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu

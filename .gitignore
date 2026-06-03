@@ -8,8 +8,8 @@ build/
 .eggs/
 
 # Data & model artifacts
-outputs/
 research_sessions/
+research_output/
 *.pkl
 *.pt
 *.npy
@@ -17,10 +17,26 @@ research_sessions/
 *.hdf5
 *.safetensors
 
+# Per-example outputs (not tracked by default)
+examples/cellular_senescence/session/
+examples/cellular_senescence/outputs/
+examples/cancer_immunotherapy/session/
+examples/cancer_immunotherapy/outputs/
+examples/alzheimers_neuroinflammation/session/
+examples/alzheimers_neuroinflammation/outputs/
+examples/gene_expression_investigation/session/
+examples/gene_expression_investigation/outputs/
+
+# Novel research: track report & summary, skip large session data
+examples/novel_research/session/
+examples/novel_research/outputs/differential_expression.csv
+examples/novel_research/outputs/pca_coords.csv
+
 # Downloaded datasets
 data/cache/
 data/geo_cache/
 data/msigdb_cache/
+~/.cache/agentic-discovery/
 *.soft.gz
 *.gmt
 

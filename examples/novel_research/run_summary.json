@@ -1,0 +1,78 @@
+{
+  "research_question": "What are the shared molecular mechanisms between T2D and AD in brain tissue?",
+  "dataset": "GSE5281",
+  "cycles_completed": 3,
+  "hypotheses": [
+    {
+      "id": "hyp_9c84c864b2",
+      "statement": "Insulin-resistance-like signaling (reduced PI3K-AKT/insulin pathway activity with increased GSK3B-associated programs) is a shared molecular axis linking metabolic dysfunction to neurodegeneration in AD brain tissue.",
+      "status": "proposed",
+      "confidence": 0.83
+    },
+    {
+      "id": "hyp_5de6c9734e",
+      "statement": "Neuroinflammatory extracellular-matrix remodeling, centered on MMP9 and innate immune activation, is a shared driver program connecting diabetes-related inflammation and AD neurodegeneration.",
+      "status": "inconclusive",
+      "confidence": 0.79
+    },
+    {
+      "id": "hyp_106cf74b7c",
+      "statement": "Mitochondrial energy failure and oxidative phosphorylation suppression form a convergent expression signature shared between T2D-like metabolic stress and AD brain degeneration.",
+      "status": "proposed",
+      "confidence": 0.87
+    },
+    {
+      "id": "hyp_5c92255f53",
+      "statement": "Alzheimer\u2019s disease brain tissue exhibits a diabetes-like insulin-resistance signature characterized by reduced neuronal insulin/PI3K-AKT signaling and increased GSK3B-associated stress programs.",
+      "status": "proposed",
+      "confidence": 0.79
+    },
+    {
+      "id": "hyp_006e3c7bf9",
+      "statement": "MMP9-centered immune activation is a shared molecular driver linking metabolic dysfunction and neurodegeneration in AD brain tissue.",
+      "status": "proposed",
+      "confidence": 0.84
+    },
+    {
+      "id": "hyp_4a23a56651",
+      "statement": "Sleep/glymphatic-disruption-associated inflammatory module genes overlap with AD brain dysregulation and connect metabolic stress to amyloid-related biology.",
+      "status": "inconclusive",
+      "confidence": 0.62
+    },
+    {
+      "id": "hyp_9e65d89909",
+      "statement": "A shared AD\u2013T2D-like brain transcriptomic program in GSE5281 is characterized by downregulation of neuronal insulin/PI3K-AKT signaling genes and upregulation of inflammatory response genes.",
+      "status": "proposed",
+      "confidence": 0.77
+    },
+    {
+      "id": "hyp_8d667a1fc7",
+      "statement": "Neuroinflammatory pathways centered on leukocyte/monocyte-neutrophil activation and IL-17 signaling form a reproducible cross-disease bridge between AD brain expression (GSE5281) and T2D-related immune dysfunction.",
+      "status": "inconclusive",
+      "confidence": 0.69
+    },
+    {
+      "id": "hyp_9aee14ee99",
+      "statement": "Mitochondrial oxidative phosphorylation (OXPHOS) suppression is a key shared signature linking AD brain degeneration to T2D-like metabolic stress.",
+      "status": "proposed",
+      "confidence": 0.8
+    }
+  ],
+  "findings": [
+    {
+      "id": "find_c5e1f5454c",
+      "statement": "The hypothesis is biologically plausible, but the provided computational run does not supply the key required evidence. Differential expression for MMP9, pathway enrichment (IL-17/leukocyte activation/ECM), and co-expression module analyses all appear missing or failed (notably ImportError and failed pathway_enrichment output). The only successful result shown is PCA, which indicates substantial structure/heterogeneity (PC1~17.96%, PC2~13.89%, PC3~5.72%) and possible outliers, but this does not directly test the stated mechanistic prediction.",
+      "evidence_strength": 0.22
+    },
+    {
+      "id": "find_cb014636a8",
+      "statement": "The hypothesis is not testable from the provided run outputs because key analytical steps failed (repeated ImportError: '__import__ not found', failed pathway_enrichment, failed heatmap), leaving no valid differential-expression statistics, enrichment p-values, or module-association metrics. While a partial STRING network was returned, it does not by itself demonstrate enrichment of immune-proteostasis/extracellular clearance pathways among AD-upregulated genes nor significant co-expression modules linked to sleep/glymphatic disruption and AD status. Therefore, the current evidence is insufficient to support or refute the stated prediction.",
+      "evidence_strength": 0.13
+    },
+    {
+      "id": "find_b639f52c44",
+      "statement": "The results support a strong inflammatory signal in AD vs control brain expression, with many DE genes (6378 at FDR<0.05) and significant pathway enrichment (17 pathways; top hit IFN-gamma response, q=7.36e-06). This is directionally consistent with immune activation, which could overlap leukocyte/myeloid biology. However, the specific prediction is only partially tested by the provided digest: explicit significant enrichment of IL-17, leukocyte activation, and monocyte-neutrophil/myeloid terms is not shown, and MMP9 upregulation is not reported in the visible outputs. Extremely large reported log2 fold-changes also raise analysis-scale concerns, reducing certainty about gene-level ranking claims. Therefore, the cross-disease bridge hypothesis is plausible but not definitively established from the shown evidence.",
+      "evidence_strength": 0.62
+    }
+  ]
+}
