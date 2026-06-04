@@ -25,6 +25,8 @@ class ResultAnalysis:
 
 def _numeric_digest(aggregated: dict[str, Any]) -> dict[str, Any]:
     digest: dict[str, Any] = {}
+    ml_models: list[dict[str, Any]] = []
+
     for s in aggregated.get("steps", []):
         if not s.get("ok"):
             continue
@@ -39,6 +41,35 @@ def _numeric_digest(aggregated: dict[str, Any]) -> dict[str, Any]:
             )
         if tool == "profile_dataset":
             digest["profile"] = {k: out[k] for k in ("n_samples", "n_genes", "missing_fraction") if k in out}
+
+        ml_tools = {
+            "train_classifier", "train_neural_network", "train_model_pipeline",
+            "build_architecture", "benchmark_model", "cross_validate_hypothesis",
+        }
+        if tool in ml_tools:
+            model_info: dict[str, Any] = {"tool": tool}
+            for k in ("accuracy", "f1", "auc_roc", "precision", "recall",
+                       "cross_val_mean", "cross_val_std", "best_val_loss",
+                       "test_accuracy", "test_f1", "test_auc_roc",
+                       "training_time_s", "n_params", "architecture"):
+                if k in out and isinstance(out[k], (int, float)):
+                    model_info[k] = out[k]
+                elif k in out and isinstance(out[k], str):
+                    model_info[k] = out[k]
+            if out.get("primary_evaluation"):
+                pe = out["primary_evaluation"]
+                for k in ("accuracy", "f1", "auc_roc", "cv_mean", "cv_std"):
+                    if k in pe and isinstance(pe[k], (int, float)):
+                        model_info[f"bench_{k}"] = pe[k]
+            if len(model_info) > 1:
+                ml_models.append(model_info)
+
+    if ml_models:
+        digest["ml_models"] = ml_models
+        best = max(ml_models, key=lambda m: m.get("accuracy", m.get("test_accuracy", 0)))
+        digest["best_ml_accuracy"] = best.get("accuracy", best.get("test_accuracy"))
+        digest["best_ml_model"] = best.get("architecture", best.get("tool", "unknown"))
+
     return digest
 
 

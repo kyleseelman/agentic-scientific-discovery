@@ -28,6 +28,20 @@ from src.tools.literature import (
 from src.utils.json_extract import extract_json_object
 
 
+_AI_ML_INDICATORS = frozenset({
+    "ai", "ml", "machine learning", "deep learning", "neural network",
+    "transformer", "graph neural", "gnn", "language model", "foundation model",
+    "protein language", "esm", "alphafold", "genomic", "transcriptomics",
+    "attention", "representation learning",
+})
+
+
+def _is_ai_ml_topic(topic: str) -> bool:
+    """Return True if the topic is AI/ML-related and should trigger methodology search."""
+    topic_lower = topic.lower()
+    return any(indicator in topic_lower for indicator in _AI_ML_INDICATORS)
+
+
 @dataclass
 class ResearchProposal:
     question: str
@@ -37,6 +51,8 @@ class ResearchProposal:
     geo_rationale: str
     novelty: str
     feasibility: str
+    model_type: str = ""
+    architecture_hint: str = ""
 
 
 def search_geo_datasets(
@@ -106,7 +122,10 @@ def discover_research_questions(
     cfg = config or get_config()
 
     # --- Step 1: Literature scan ---
-    print(f"  [Discovery] Searching literature for: {topic}")
+    ai_ml_topic = _is_ai_ml_topic(topic)
+    print(f"  [Discovery] Searching literature for: {topic}"
+          f"{' (AI/ML mode)' if ai_ml_topic else ''}")
+
     pubmed_result = search_pubmed(
         f"{topic} AND (gene expression OR transcriptomics OR RNA-seq)",
         config=cfg, retmax=max_papers,
@@ -115,6 +134,28 @@ def discover_research_questions(
     papers = fetch_pubmed_abstracts(pmids, config=cfg)
     preprints = search_biorxiv(topic, config=cfg, max_results=3)
     papers.extend(preprints)
+
+    if ai_ml_topic:
+        method_result = search_pubmed(
+            f"{topic} AND (deep learning OR neural network OR "
+            f"transformer OR fine-tuning OR benchmark)",
+            config=cfg, retmax=max_papers,
+        )
+        method_pmids = method_result.get("ids", [])
+        seen_ids = {p.paper_id for p in papers}
+        method_papers = [
+            p for p in fetch_pubmed_abstracts(method_pmids, config=cfg)
+            if p.paper_id not in seen_ids
+        ]
+        papers.extend(method_papers)
+        method_preprints = search_biorxiv(
+            f"{topic} deep learning model", config=cfg, max_results=3,
+        )
+        seen_ids.update(p.paper_id for p in method_papers)
+        papers.extend(
+            p for p in method_preprints if p.paper_id not in seen_ids
+        )
+
     print(f"  [Discovery] Found {len(papers)} papers")
 
     # --- Step 2: Extract insights ---
@@ -149,6 +190,22 @@ def discover_research_questions(
     print(f"  [Discovery] Found {len(geo_datasets)} GEO datasets")
 
     # --- Step 4: LLM synthesizes research questions ---
+    if ai_ml_topic:
+        model_fields = """
+      "model_type": "Type of model to build: one of 'attention_gene_network', 'graph_neural_network', 'protein_lm_finetune', 'genomic_lm_finetune', 'multi_modal_encoder', 'residual_mlp', 'custom'",
+      "architecture_hint": "Specific architecture guidance, e.g. 'GAT with 4 attention heads over PPI graph' or 'LoRA fine-tune ESM-2 for binding prediction'""""
+        model_requirements = """
+- At least half the questions should propose BUILDING or FINE-TUNING a new model
+- For model-building questions, specify model_type and architecture_hint
+- Consider: Can a new architecture outperform baselines on this data?
+- Consider: Can a foundation model be adapted (LoRA/PEFT) for this task?
+- For non-model-building questions, set model_type and architecture_hint to empty strings"""
+    else:
+        model_fields = """
+      "model_type": "",
+      "architecture_hint": \"\""""
+        model_requirements = ""
+
     prompt = f"""You are a computational biology researcher. Based on a literature review,
 propose {max_proposals} novel, testable research questions.
 
@@ -179,7 +236,7 @@ Return JSON:
       "suggested_geo": "GSExxxxx",
       "geo_rationale": "Why this dataset is appropriate for testing this question...",
       "novelty": "What makes this question novel compared to existing work...",
-      "feasibility": "Why this can be answered with available computational tools..."
+      "feasibility": "Why this can be answered with available computational tools...",{model_fields}
     }}
   ]
 }}
@@ -190,7 +247,7 @@ Requirements:
 - Prefer questions that connect two concepts in a novel way
 - Each question should specify a real GEO dataset from the list above
 - If no dataset from the list fits, suggest what type of dataset would be needed
-- Rank by novelty × feasibility
+- Rank by novelty × feasibility{model_requirements}
 """
 
     print(f"  [Discovery] Generating research proposals with LLM...")
@@ -212,6 +269,8 @@ Requirements:
             geo_rationale=str(p.get("geo_rationale", "")),
             novelty=str(p.get("novelty", "")),
             feasibility=str(p.get("feasibility", "")),
+            model_type=str(p.get("model_type", "")),
+            architecture_hint=str(p.get("architecture_hint", "")),
         ))
 
     return proposals

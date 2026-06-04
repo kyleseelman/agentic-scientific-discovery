@@ -618,6 +618,164 @@ def extract_entities_llm(ctx: ToolContext, params: dict[str, Any]) -> dict[str, 
 
 
 # ---------------------------------------------------------------------------
+# Tool: extract_architecture_from_paper
+# ---------------------------------------------------------------------------
+
+def extract_architecture_from_paper(ctx: ToolContext, params: dict[str, Any]) -> dict[str, Any]:
+    """Extract model architecture details from a paper abstract or method section.
+
+    Extracts structured information that feeds into ``design_from_paper``
+    and can update the architecture catalog with new patterns.
+
+    params:
+        text: str — paper abstract or method section
+        paper_id: str | None — identifier for provenance
+        paper_title: str | None — title for reference
+    """
+    text = str(params.get("text", ""))
+    if not text:
+        return {"error": "text is required (paper abstract or method section)"}
+
+    paper_id = params.get("paper_id", "unknown")
+    paper_title = params.get("paper_title", "")
+
+    from src.tools.architecture_catalog import get_catalog_summary, COMPONENT_VOCABULARY
+
+    extraction_prompt = f"""Extract the model architecture details from this paper.
+
+Paper: {paper_title}
+Text:
+{text[:4000]}
+
+Known architecture components: {COMPONENT_VOCABULARY}
+
+Known architecture patterns:
+{get_catalog_summary()}
+
+Return a JSON object with:
+{{
+  "architecture_description": "<1-2 sentence description of the model>",
+  "architecture_type": "<closest match from known patterns, or 'novel'>",
+  "components": ["<list of architecture components used>"],
+  "layers": {{
+    "encoder": "<description>",
+    "decoder": "<description if any>",
+    "attention": "<type: self-attention, cross-attention, graph-attention, none>",
+    "normalization": "<type: layer_norm, batch_norm, none>",
+    "activation": "<type: relu, gelu, swish, etc.>"
+  }},
+  "training_procedure": {{
+    "optimizer": "<adam, adamw, sgd, etc.>",
+    "lr_schedule": "<cosine, linear_warmup, step, etc.>",
+    "loss_function": "<cross_entropy, mse, contrastive, etc.>",
+    "regularization": ["<dropout, weight_decay, etc.>"]
+  }},
+  "key_innovation": "<what is novel compared to standard approaches>",
+  "input_output": {{
+    "input_type": "<gene_expression, protein_sequence, graph, text, multi_modal>",
+    "output_type": "<classification, regression, embedding, generation>"
+  }},
+  "hyperparameters": {{
+    "hidden_dim": <int or null>,
+    "n_layers": <int or null>,
+    "n_heads": <int or null>,
+    "dropout": <float or null>
+  }},
+  "reproducibility": {{
+    "dataset": "<dataset used>",
+    "compute": "<GPU type and count if mentioned>",
+    "code_available": <true/false/null>
+  }}
+}}
+
+Return strictly valid JSON only."""
+
+    extracted: dict[str, Any] | None = None
+
+    try:
+        from src.config import create_llm_backend
+        backend = create_llm_backend()
+        response = backend.generate(
+            extraction_prompt,
+            system="You are an expert ML architecture analyst. Extract architecture details "
+                   "from papers and return structured JSON.",
+            temperature=0.1,
+        )
+        import json as json_mod
+        clean = response.strip()
+        start = clean.find("{")
+        end = clean.rfind("}") + 1
+        if start >= 0 and end > start:
+            extracted = json_mod.loads(clean[start:end])
+    except Exception as e:
+        logger.warning("LLM extraction failed (%s), using keyword analysis", e)
+
+    if extracted is None:
+        text_lower = text.lower()
+        components: list[str] = []
+        comp_keywords = {
+            "multi_head_attention": ["attention", "self-attention", "multi-head"],
+            "graph_convolution": ["graph convolution", "gcn", "message passing"],
+            "graph_attention": ["graph attention", "gat"],
+            "feed_forward": ["feed-forward", "ffn", "mlp"],
+            "skip_connection": ["residual", "skip connection"],
+            "layer_norm": ["layer norm", "layernorm"],
+            "batch_norm": ["batch norm", "batchnorm"],
+            "dropout": ["dropout"],
+            "positional_encoding": ["positional encoding", "position embedding"],
+            "encoder": ["encoder"],
+            "decoder": ["decoder"],
+            "cross_attention": ["cross-attention", "cross attention"],
+        }
+        for comp, kws in comp_keywords.items():
+            if any(kw in text_lower for kw in kws):
+                components.append(comp)
+
+        if any(kw in text_lower for kw in ["transformer", "attention"]):
+            arch_type = "gene_transformer"
+        elif any(kw in text_lower for kw in ["graph neural", "gcn", "gnn", "gat"]):
+            arch_type = "gcn_message_passing"
+        elif any(kw in text_lower for kw in ["contrastive", "simclr"]):
+            arch_type = "contrastive_encoder"
+        elif any(kw in text_lower for kw in ["variational", "vae"]):
+            arch_type = "expression_vae"
+        elif any(kw in text_lower for kw in ["multi-modal", "multimodal"]):
+            arch_type = "multi_modal_encoder"
+        else:
+            arch_type = "residual_mlp"
+
+        extracted = {
+            "architecture_description": f"Keyword-extracted architecture from paper",
+            "architecture_type": arch_type,
+            "components": components or ["feed_forward"],
+            "layers": {"encoder": "unknown", "attention": "unknown"},
+            "training_procedure": {"optimizer": "unknown", "loss_function": "unknown"},
+            "key_innovation": "Could not extract (LLM unavailable)",
+            "input_output": {"input_type": "unknown", "output_type": "unknown"},
+            "hyperparameters": {},
+            "reproducibility": {},
+        }
+
+    extracted["paper_id"] = paper_id
+    extracted["paper_title"] = paper_title
+
+    from src.tools.architecture_catalog import match_paper_concepts
+    components = extracted.get("components", [])
+    task = extracted.get("input_output", {}).get("output_type")
+    matches = match_paper_concepts(components, task)
+    extracted["catalog_matches"] = [
+        {"name": m.name, "paper": m.paper, "description": m.description[:100]}
+        for m in matches[:3]
+    ]
+
+    total_fields = sum(1 for v in extracted.values() if v and v != "unknown")
+    print(f"Extracted {total_fields} architecture fields from paper "
+          f"({extracted.get('architecture_type', 'unknown')})")
+
+    return extracted
+
+
+# ---------------------------------------------------------------------------
 # Tool: list_recommended_models
 # ---------------------------------------------------------------------------
 
@@ -817,6 +975,7 @@ def register_llm_tools(registry: dict[str, Callable]) -> None:
         "generate_with_llm": generate_with_llm,
         "embed_texts": embed_texts,
         "extract_entities_llm": extract_entities_llm,
+        "extract_architecture_from_paper": extract_architecture_from_paper,
         "list_recommended_models": list_recommended_models,
         "search_hf_models": search_hf_models,
         "download_model": download_model,

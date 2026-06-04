@@ -345,6 +345,9 @@ def _register_extended_tools() -> None:
     from src.tools.causal_inference import register_causal_tools
     register_causal_tools(TOOL_REGISTRY)
 
+    from src.tools.model_builder import register_model_builder_tools
+    register_model_builder_tools(TOOL_REGISTRY)
+
 
 _register_extended_tools()
 

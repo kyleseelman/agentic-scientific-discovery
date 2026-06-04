@@ -26,6 +26,9 @@ class ModelRecord:
     training_time_s: float
     created_at: str = field(default_factory=_utc_now)
     notes: str = ""
+    baseline: bool = False
+    paper_reference: str = ""
+    comparison_to_baselines: dict[str, float] = field(default_factory=dict)
 
 
 class ModelStore:
@@ -37,7 +40,11 @@ class ModelStore:
         self._records: list[ModelRecord] = []
         if self.path.exists():
             raw = json.loads(self.path.read_text())
-            self._records = [ModelRecord(**r) for r in raw.get("records", [])]
+            for r in raw.get("records", []):
+                r.setdefault("baseline", False)
+                r.setdefault("paper_reference", "")
+                r.setdefault("comparison_to_baselines", {})
+                self._records.append(ModelRecord(**r))
 
     def add(self, record: ModelRecord) -> None:
         self._records.append(record)
@@ -61,3 +68,33 @@ class ModelStore:
 
     def recent(self, n: int = 10) -> list[ModelRecord]:
         return self._records[-n:]
+
+    def all_for_task(self, task: str) -> list[ModelRecord]:
+        """Retrieve all models (including baselines) for a given task string."""
+        return [r for r in self._records if task.lower() in r.task.lower()]
+
+    def sota_summary(self, task: str, metric: str = "accuracy") -> dict:
+        """Return best model + all baselines sorted by metric for a task."""
+        task_models = self.all_for_task(task)
+        if not task_models:
+            return {"best": None, "baselines": [], "all_ranked": []}
+
+        with_metric = [r for r in task_models if metric in r.metrics]
+        if not with_metric:
+            return {"best": None, "baselines": [asdict(r) for r in task_models], "all_ranked": []}
+
+        ranked = sorted(with_metric, key=lambda r: r.metrics[metric], reverse=True)
+        baselines = [r for r in ranked if r.baseline]
+        novel = [r for r in ranked if not r.baseline]
+
+        return {
+            "best": asdict(ranked[0]),
+            "best_is_baseline": ranked[0].baseline,
+            "baselines": [asdict(r) for r in baselines],
+            "novel_models": [asdict(r) for r in novel],
+            "all_ranked": [
+                {"id": r.id, "type": r.model_type, "baseline": r.baseline,
+                 metric: r.metrics[metric]}
+                for r in ranked
+            ],
+        }

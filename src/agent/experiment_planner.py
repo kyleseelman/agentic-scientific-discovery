@@ -132,9 +132,18 @@ def sanitize_plan(plan: ExperimentPlan, fallback_hypothesis_id: str) -> Experime
         "generate_with_llm",
         "embed_texts",
         "extract_entities_llm",
+        "extract_architecture_from_paper",
         "list_recommended_models",
         "search_hf_models",
         "download_model",
+        # Novel model building
+        "build_architecture",
+        "train_model_pipeline",
+        "finetune_protein_lm",
+        "finetune_genomic_lm",
+        "build_graph_model",
+        "design_from_paper",
+        "benchmark_model",
         # Knowledge graph
         "query_knowledge_graph",
         "add_to_knowledge_graph",

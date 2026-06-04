@@ -2,7 +2,12 @@
 """Run a novel research investigation from the command line.
 
 This is the main entry point for running autonomous research. There are
-three modes:
+four modes:
+
+**Model research mode (--model-research)**: SOTA-aware comprehensive
+pipeline that scans literature for baselines, trains standard models,
+builds a novel architecture, runs ablation studies, performs statistical
+comparisons, and generates an arXiv-style research paper.
 
 **Feed mode (--feed)**: Ingest the agent_feed.json from the
 bio-literature-scanner. The agent reviews scored papers, selects
@@ -16,6 +21,12 @@ a GEO dataset, and runs the full investigation — no human input needed.
 dataset for more controlled investigations.
 
 Usage:
+    # MODEL RESEARCH: Full SOTA-aware pipeline with paper generation
+    python run_research.py \
+        --model-research "Alzheimer's gene expression classification" \
+        --geo GSE5281 --architecture attention_gene_network \
+        --ablation --provider gateway
+
     # FEED: Consume daily literature scanner output
     python run_research.py \
         --feed ../bio-literature-scanner/agent_feed.json \
@@ -105,6 +116,15 @@ def parse_args() -> argparse.Namespace:
                     help="Output directory (default: ./research_output)")
     p.add_argument("--demo", action="store_true",
                     help="Run demo with mock LLM and synthetic data")
+    p.add_argument("--model-research", type=str, default=None,
+                    help="SOTA-aware model research mode: provide a task description "
+                         "(e.g. 'Alzheimer gene expression classification')")
+    p.add_argument("--architecture", type=str, default="attention_gene_network",
+                    help="Architecture hint for model research (default: attention_gene_network)")
+    p.add_argument("--max-baselines", type=int, default=5,
+                    help="Max baselines to train in model research (default: 5)")
+    p.add_argument("--ablation", action="store_true",
+                    help="Run ablation studies in model research mode")
     p.add_argument("--organism", type=str, default="Homo sapiens")
     p.add_argument("--tissue", type=str, default=None)
     p.add_argument("--condition", type=str, default=None)
@@ -330,6 +350,11 @@ def main() -> None:
     cfg = get_config()
     llm = create_llm_backend(cfg)
 
+    # ---- Model research mode: SOTA-aware pipeline ----
+    if args.model_research:
+        run_model_research(args, llm, cfg, output_dir)
+        return
+
     # ---- Feed mode: ingest scanner output ----
     if args.feed:
         run_from_feed(args, llm, cfg, output_dir)
@@ -342,13 +367,57 @@ def main() -> None:
 
     # ---- Directed mode: user specifies question + dataset ----
     if not args.question:
-        print("Error: provide --feed, --topic (autonomous), --question + --geo (directed), or --demo")
+        print("Error: provide --model-research, --feed, --topic (autonomous), --question + --geo (directed), or --demo")
         sys.exit(1)
     if not args.geo:
         print("Error: --geo is required in directed mode (e.g. --geo GSE5281)")
         sys.exit(1)
 
     run_directed(args, llm, cfg, output_dir)
+
+
+def run_model_research(args, llm, cfg, output_dir: Path) -> None:
+    """Autonomous model research: LLM-driven iterative model building."""
+    from src.agent.model_research import AutonomousResearchAgent
+
+    task = args.model_research
+
+    if not args.geo:
+        print("Error: --geo is required for model research (e.g. --geo GSE5281)")
+        sys.exit(1)
+
+    print(f"  Loading GEO dataset {args.geo}...")
+    try:
+        expression, groups, metadata = load_geo_dataset(
+            args.geo,
+            group_column=args.group_column,
+            control_label=args.control,
+            treatment_label=args.treatment,
+        )
+    except Exception as e:
+        print(f"  Failed to load {args.geo}: {e}")
+        sys.exit(1)
+
+    print(f"  Loaded: {expression.shape[0]} genes x {expression.shape[1]} samples")
+    print(f"  Groups: {dict(groups.value_counts())}")
+
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    research_dir = output_dir / f"model_research_{timestamp}"
+
+    agent = AutonomousResearchAgent(
+        llm=llm, config=cfg, output_dir=research_dir, max_iterations=8,
+    )
+    summary = agent.run(
+        task=task,
+        expression=expression,
+        groups=groups,
+        metadata=metadata,
+        architecture=args.architecture,
+        n_top_genes=200,
+        run_ablation=args.ablation,
+    )
+
+    print(f"\n  Summary saved to: {summary.get('report_path', research_dir)}")
 
 
 def run_from_feed(args, llm, cfg, output_dir: Path) -> None:

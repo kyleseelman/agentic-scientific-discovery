@@ -46,6 +46,10 @@ The 12-phase orchestrator pipeline runs in cycles until a configurable budget (m
     │     Devil's-advocate LLM attempts to falsify conclusions
     │     Generates falsification experiments, adjusts confidence
     │
+    ├── Phase 6d: SOTA-Aware Baseline Comparison (auto for model-building experiments)
+    │     Detects ML tool outputs → trains standard baselines → compares
+    │     Stores baseline comparison in experiment interpretation
+    │
     ├── Phase 7: Knowledge Update
     │     Persist findings, update hypothesis status, log open questions
     │
@@ -381,6 +385,70 @@ pip install -r requirements.txt
 # PyTorch (CPU): pip install torch --index-url https://download.pytorch.org/whl/cpu
 ```
 
+### Model Research Mode: Autonomous LLM-Driven Model Building
+
+A fully autonomous research agent that uses the LLM as its "brain" to iteratively build, evaluate, and improve models. The LLM analyzes training curves, diagnoses failures (overfitting, underfitting, architecture mismatch), and decides what to try next — including switching architectures, running hyperparameter searches, or stopping early when further iteration won't help.
+
+```bash
+# Autonomous model research (LLM drives all decisions)
+python run_research.py \
+    --model-research "Alzheimer's gene expression classification" \
+    --geo GSE5281 --architecture attention_gene_network \
+    --ablation --provider gateway
+
+# The agent will autonomously:
+# 1. Scan literature for SOTA benchmarks
+# 2. Train standard ML baselines (LR, RF, SVM, GB)
+# 3. Search HuggingFace for pretrained models
+# 4. Build, train, and evaluate novel architectures
+# 5. Analyze results and decide next action (LLM-driven)
+# 6. Run hyperparameter search if needed
+# 7. Run k-fold cross-validation on the best model
+# 8. Run ablation studies and write an arXiv-style paper
+```
+
+**How the autonomous agent works (7 phases):**
+
+1. **Literature & SOTA scan** — searches PubMed/bioRxiv for published benchmarks, extracts reported metrics via LLM
+2. **Baseline training** — trains LR, RF, SVM, Gradient Boosting baselines on the same data
+3. **HuggingFace model search** — finds relevant pretrained models for benchmarking
+4. **LLM-driven iterative model building** (up to 8 iterations):
+   - At each iteration, the LLM receives the full research log: all previous attempts, training curves, accuracy gaps, and error messages
+   - The LLM analyzes this history and decides: `train_model` (with specific architecture/config), `hyperparam_search` (with LLM-defined search space), `design_from_paper` (extract architecture from literature), or `stop`
+   - Each decision includes a reasoning trace explaining the diagnosis and strategy
+   - Auto-sizes architectures to dataset (avoids overparameterization on small datasets)
+   - Stops early when the novel model beats all baselines or the LLM judges further iteration futile
+5. **Ablation studies** — varies hidden dimension, feature count, and dropout around the best model
+6. **K-fold cross-validation** — proper 5-fold stratified CV on the best architecture to measure variance
+7. **Report generation** — produces an arXiv-style paper with comparison tables, training curves, and figures
+
+**LLM action space:**
+| Action | Description |
+|--------|-------------|
+| `train_model` | Build and train a specific architecture with LLM-chosen hyperparameters |
+| `hyperparam_search` | Random search over LLM-defined search space (learning rate, weight decay, dropout, hidden dim) |
+| `design_from_paper` | Use `design_from_paper` tool to extract and implement an architecture from literature |
+| `stop` | LLM determines further iteration is unlikely to improve results |
+
+**Example agent reasoning (real output):**
+```
+Iter 1: "We have no prior deep-learning attempt yet, so the first step is a
+        strong single run with a tabular-friendly architecture" → residual_mlp (87.9%)
+Iter 2: "The residual MLP shows clear overfitting: training loss collapsed to
+        near-zero while validation loss worsened" → attention_gene_network (81.8%)
+Iter 3: "The residual MLP severely overfit, attention_gene_network with smaller
+        config also struggled — try gene_transformer" → gene_transformer (93.9%) ✓ BEATS BASELINE
+Iter 4: "Already beats baseline by tiny margin, run HP search to solidify" → HP search
+Iter 5: "STOP — gains are not reliably improving beyond current best, another
+        iteration unlikely to produce meaningful improvement on this small dataset"
+```
+
+**Output:** `research_output/model_research_<timestamp>/`
+- `research_paper.md` — full arXiv-style paper
+- `figures/model_comparison.png` — bar chart comparing all models
+- `figures/training_curves.png` — training/validation loss curves
+- `pipeline_summary.json` — structured results with full research log
+
 ### Feed Mode: Ingest Daily Literature Scanner
 
 Connect to the [bio-literature-scanner](https://github.com/kyleseelman/bio-literature-scanner) for automated paper-to-research pipelines. The scanner scores papers daily; this agent ingests the feed, selects the most promising paper, and runs a full investigation:
@@ -465,13 +533,17 @@ python run_research.py --demo  # No API keys, synthetic data, mock LLM
 
 | Argument | Mode | Description |
 |----------|------|-------------|
+| `--model-research` | Model Research | Task description for SOTA-aware pipeline (e.g. "Alzheimer's gene expression classification") |
+| `--architecture` | Model Research | Architecture type: `attention_gene_network`, `gene_transformer`, `residual_mlp`, etc. (default: `attention_gene_network`) |
+| `--ablation` | Model Research | Run ablation studies (vary architecture size and feature count) |
+| `--max-baselines` | Model Research | Max baselines to train (default: 5) |
 | `--feed` / `-f` | Feed | Path to `agent_feed.json` from bio-literature-scanner |
 | `--feed-min-score` | Feed | Minimum score to consider (default: 7.0) |
 | `--feed-topic` | Feed | Only investigate papers from this topic |
 | `--topic` / `-t` | Autonomous | Broad topic — agent discovers questions from literature |
 | `--question` / `-q` | Directed | Specific research question |
-| `--geo` / `-g` | Directed | GEO accession (e.g. GSE5281) |
-| `--provider` | All | LLM backend: mock, ollama, openai, huggingface |
+| `--geo` / `-g` | Directed / Model Research | GEO accession (e.g. GSE5281) |
+| `--provider` | All | LLM backend: mock, ollama, openai, huggingface, gateway |
 | `--model` | All | Model name for chosen provider |
 | `--group-column` | All | Metadata field for grouping (auto-detected if omitted) |
 | `--control` | All | Control group label |

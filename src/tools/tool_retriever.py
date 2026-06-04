@@ -263,6 +263,55 @@ TOOL_CATALOG: list[ToolDescription] = [
         "knowledge_graph",
         "Save newly discovered gene-disease associations or experimental findings for future retrieval",
     ),
+    # Novel model building
+    ToolDescription(
+        "build_architecture",
+        "Build and instantiate a custom PyTorch nn.Module from an architecture catalog: gene transformers, GAT, multi-modal encoders, residual MLPs, contrastive encoders, VAEs, GCNs, or custom LLM-generated code. Returns a saved model checkpoint ready for training.",
+        "model_building",
+        "Design a self-attention gene network architecture for gene regulation prediction",
+    ),
+    ToolDescription(
+        "train_model_pipeline",
+        "Full GPU training pipeline for any PyTorch model: data prep, train/val/test split, early stopping, cosine/plateau LR scheduling, gradient clipping, mixed precision (AMP), metric logging, and checkpoint saving.",
+        "model_building",
+        "Train the custom architecture on expression data with early stopping and mixed precision",
+    ),
+    ToolDescription(
+        "finetune_protein_lm",
+        "Fine-tune ESM-2 protein language models (8M/35M/650M) with LoRA for protein function prediction, protein-protein interaction, or property regression. Parameter-efficient via PEFT adapters.",
+        "model_building",
+        "Fine-tune ESM-2 with LoRA to predict protein binding affinity from sequence",
+    ),
+    ToolDescription(
+        "finetune_genomic_lm",
+        "Fine-tune any HuggingFace language model with LoRA/PEFT for genomic or biomedical text tasks: classification, NER, sequence-to-sequence. Supports 4-bit quantized loading for large models.",
+        "model_building",
+        "Fine-tune BiomedBERT with LoRA for classifying gene function descriptions",
+    ),
+    ToolDescription(
+        "build_graph_model",
+        "Build and train graph neural networks (GCN, GAT, GraphSAGE) for biological networks: protein interactions, gene regulatory networks, metabolic pathways. Manual message-passing with optional PyTorch Geometric backend.",
+        "model_building",
+        "Build a GAT model on the STRING protein interaction network for node classification",
+    ),
+    ToolDescription(
+        "design_from_paper",
+        "The 'novel' tool: given a paper abstract or method description, uses LLM to extract the architecture design, maps it to the architecture catalog, and instantiates a buildable PyTorch model. Optionally auto-trains the designed model.",
+        "model_building",
+        "Read a transformer-based gene regulation paper and build the described architecture",
+    ),
+    ToolDescription(
+        "benchmark_model",
+        "Evaluate a trained PyTorch model with comprehensive metrics (accuracy, F1, AUC, precision, recall), cross-validation, and optional comparison against baseline models. Records results with lineage tracking.",
+        "model_building",
+        "Benchmark the novel architecture against the baseline MLP on the same dataset",
+    ),
+    ToolDescription(
+        "extract_architecture_from_paper",
+        "Extract structured model architecture details from a paper: architecture components, training procedure, key innovation, hyperparameters, and reproducibility info. Maps extracted concepts to the buildable architecture catalog.",
+        "llm",
+        "Extract the transformer architecture and training details from an Enformer paper abstract",
+    ),
 ]
 
 

@@ -323,23 +323,63 @@ class ResearchOrchestrator:
                 "reason": str(e),
             })
 
+        # Phase 6d: SOTA-aware baseline comparison for model-building experiments
+        ml_digest = analysis.raw.get("ml_models") or []
+        if not ml_digest:
+            from src.agent.result_analyzer import _numeric_digest
+            nd = _numeric_digest(aggregated)
+            ml_digest = nd.get("ml_models", [])
+
+        baseline_comparison: dict[str, Any] | None = None
+        if ml_digest:
+            try:
+                from src.agent.sota_scanner import collect_baselines
+                bl = collect_baselines(
+                    task=hyp.statement[:120],
+                    ctx=self.tool_ctx_factory(),
+                    dataset_name=self.orch_cfg.research_question[:60],
+                )
+                if bl:
+                    baseline_comparison = {
+                        "baselines": [
+                            {"name": b.name, "metrics": b.metrics, "source": b.source}
+                            for b in bl
+                        ],
+                        "novel_models": ml_digest,
+                    }
+                    cycle_entry["decisions"].append({
+                        "step": "baseline_comparison",
+                        "n_baselines": len(bl),
+                        "n_novel_models": len(ml_digest),
+                    })
+            except Exception as e:
+                cycle_entry["decisions"].append({
+                    "step": "baseline_comparison",
+                    "skipped": True,
+                    "reason": str(e),
+                })
+
         # Phase 7: Update knowledge
         exp_id = new_id("exp")
+        interpretation: dict[str, Any] = {
+            "verdict": analysis.verdict,
+            "summary": analysis.summary,
+            "confidence": analysis.confidence,
+            "posterior": analysis.posterior,
+            "follow_ups": analysis.follow_ups,
+            "literature_grounded": hyp.literature_grounded,
+            "source_papers": hyp.source_papers,
+        }
+        if baseline_comparison:
+            interpretation["baseline_comparison"] = baseline_comparison
+
         record = ExperimentRecord(
             id=exp_id,
             hypothesis_id=hyp.id,
             plan=asdict(plan),
             execution_trace=trace,
             results=aggregated,
-            interpretation={
-                "verdict": analysis.verdict,
-                "summary": analysis.summary,
-                "confidence": analysis.confidence,
-                "posterior": analysis.posterior,
-                "follow_ups": analysis.follow_ups,
-                "literature_grounded": hyp.literature_grounded,
-                "source_papers": hyp.source_papers,
-            },
+            interpretation=interpretation,
         )
         self.experiments.append(record)
 

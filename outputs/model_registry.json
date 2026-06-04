@@ -1,0 +1,1877 @@
+{
+  "records": [
+    {
+      "id": "mdl_a9c951ca",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 163074
+      },
+      "feature_genes": [],
+      "model_path": "outputs/test_model_building/mdl_a9c951ca_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T02:57:02.580541+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_42b5fd08",
+      "model_type": "gcn_message_passing",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "gcn_message_passing",
+        "n_params": 21314
+      },
+      "feature_genes": [],
+      "model_path": "outputs/test_model_building/mdl_42b5fd08_gcn_message_passing.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T02:57:02.591473+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_e8d503b6",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 163202
+      },
+      "feature_genes": [],
+      "model_path": "outputs/test_model_building/mdl_e8d503b6_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T02:59:22.363737+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_06f8d6c7",
+      "model_type": "gcn_message_passing",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "gcn_message_passing",
+        "n_params": 21314
+      },
+      "feature_genes": [],
+      "model_path": "outputs/test_model_building/mdl_06f8d6c7_gcn_message_passing.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T02:59:22.377331+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_e0e27799",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.5505815148353577,
+        "accuracy": 0.7272727272727273,
+        "f1": 0.716629711751663
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.001
+      },
+      "feature_genes": [],
+      "model_path": "outputs/test_model_building/mdl_e0e27799_attention_gene_network_trained.pt",
+      "training_time_s": 1.351172685623169,
+      "created_at": "2026-06-04T02:59:25.224155+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_16cd2346",
+      "model_type": "attention_gene_network",
+      "task": "benchmark",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.7950310559006211,
+        "f1": 0.7891215939144731,
+        "auc_roc": 0.8260329294812054
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "outputs/test_model_building/mdl_e0e27799_attention_gene_network_trained.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T02:59:26.391802+00:00",
+      "notes": "benchmark",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_095feddd",
+      "model_type": "logistic_regression",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9183673469387755,
+        "f1": 0.9173955296404275,
+        "auc_roc": 0.9531772575250836,
+        "cross_val_mean": 0.8827651515151516
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research/model_095feddd.pkl",
+      "training_time_s": 0.014909505844116211,
+      "created_at": "2026-06-04T03:18:57.813050+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_2691beff",
+      "model_type": "random_forest",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9183673469387755,
+        "f1": 0.9180237751666322,
+        "auc_roc": 0.9682274247491639,
+        "cross_val_mean": 0.8571969696969697
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research/model_2691beff.pkl",
+      "training_time_s": 0.29805660247802734,
+      "created_at": "2026-06-04T03:18:59.882674+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_a7ec545d",
+      "model_type": "svm",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9183673469387755,
+        "f1": 0.9180237751666322,
+        "auc_roc": 0.9698996655518395,
+        "cross_val_mean": 0.8820075757575758
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research/model_a7ec545d.pkl",
+      "training_time_s": 0.006152153015136719,
+      "created_at": "2026-06-04T03:19:00.013198+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_ea3c2189",
+      "model_type": "gradient_boosting",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9387755102040817,
+        "f1": 0.9383095310005609,
+        "auc_roc": 0.9749163879598662,
+        "cross_val_mean": 0.8329545454545455
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research/model_ea3c2189.pkl",
+      "training_time_s": 1.3208897113800049,
+      "created_at": "2026-06-04T03:19:08.789210+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_0a075f9d",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 621314
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research/mdl_0a075f9d_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:19:09.082342+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_bea51abe",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.46545013785362244,
+        "accuracy": 0.72,
+        "f1": 0.7114431239388794
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.001
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research/mdl_bea51abe_attention_gene_network_trained.pt",
+      "training_time_s": 1.9443886280059814,
+      "created_at": "2026-06-04T03:19:11.256015+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_00349149",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 423042
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research/mdl_00349149_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:19:11.277205+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_4b0a5072",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.4871676564216614,
+        "accuracy": 0.72,
+        "f1": 0.7114431239388794
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.001
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research/mdl_4b0a5072_attention_gene_network_trained.pt",
+      "training_time_s": 0.3699657917022705,
+      "created_at": "2026-06-04T03:19:11.749702+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_6a0a15c1",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 621314
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research/mdl_6a0a15c1_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:19:11.773555+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_04711ce5",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.5276013016700745,
+        "accuracy": 0.76,
+        "f1": 0.7483333333333333
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.001
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research/mdl_04711ce5_attention_gene_network_trained.pt",
+      "training_time_s": 0.2873656749725342,
+      "created_at": "2026-06-04T03:19:12.175370+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_9abcde2e",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 608514
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research/mdl_9abcde2e_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:19:12.199860+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_9d938ae1",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.47894105315208435,
+        "accuracy": 0.76,
+        "f1": 0.7483333333333333
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 100,
+        "learning_rate": 0.001
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research/mdl_9d938ae1_attention_gene_network_trained.pt",
+      "training_time_s": 0.49681520462036133,
+      "created_at": "2026-06-04T03:19:12.818462+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_d85a97d9",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 659714
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research/mdl_d85a97d9_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:19:12.843550+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_dfa96e43",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.48945289850234985,
+        "accuracy": 0.76,
+        "f1": 0.7361764705882353
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 500,
+        "learning_rate": 0.001
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research/mdl_dfa96e43_attention_gene_network_trained.pt",
+      "training_time_s": 0.47782468795776367,
+      "created_at": "2026-06-04T03:19:13.437325+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_5a680944",
+      "model_type": "logistic_regression",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9183673469387755,
+        "f1": 0.9173955296404275,
+        "auc_roc": 0.9531772575250836,
+        "cross_val_mean": 0.8827651515151516
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v2/model_5a680944.pkl",
+      "training_time_s": 0.006700992584228516,
+      "created_at": "2026-06-04T03:27:03.283782+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_f6e55ef3",
+      "model_type": "random_forest",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9183673469387755,
+        "f1": 0.9180237751666322,
+        "auc_roc": 0.9682274247491639,
+        "cross_val_mean": 0.8571969696969697
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v2/model_f6e55ef3.pkl",
+      "training_time_s": 0.29666733741760254,
+      "created_at": "2026-06-04T03:27:05.335137+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_aab5b0ea",
+      "model_type": "svm",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9183673469387755,
+        "f1": 0.9180237751666322,
+        "auc_roc": 0.9698996655518395,
+        "cross_val_mean": 0.8820075757575758
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v2/model_aab5b0ea.pkl",
+      "training_time_s": 0.005601167678833008,
+      "created_at": "2026-06-04T03:27:05.452482+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_0662a7f0",
+      "model_type": "gradient_boosting",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9387755102040817,
+        "f1": 0.9383095310005609,
+        "auc_roc": 0.9749163879598662,
+        "cross_val_mean": 0.8329545454545455
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v2/model_0662a7f0.pkl",
+      "training_time_s": 1.3022370338439941,
+      "created_at": "2026-06-04T03:27:14.162812+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_e20727f6",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 224770
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v2/mdl_e20727f6_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:27:14.466924+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_374e08c5",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.28806817531585693,
+        "accuracy": 0.8787878787878788,
+        "f1": 0.8776486671223513
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.0005
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v2/mdl_374e08c5_attention_gene_network_trained.pt",
+      "training_time_s": 8.240332841873169,
+      "created_at": "2026-06-04T03:27:22.850503+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_f3e9210e",
+      "model_type": "residual_mlp",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "residual_mlp",
+        "n_params": 145986
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v2/mdl_f3e9210e_residual_mlp.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:27:22.860033+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_8cef4141",
+      "model_type": "residual_mlp",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.2564718723297119,
+        "accuracy": 0.8787878787878788,
+        "f1": 0.8787878787878788
+      },
+      "hyperparameters": {
+        "architecture": "residual_mlp",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.001
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v2/mdl_8cef4141_residual_mlp_trained.pt",
+      "training_time_s": 3.986829996109009,
+      "created_at": "2026-06-04T03:27:26.930265+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_c99ac161",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 224770
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v2/mdl_c99ac161_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:27:26.948659+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_4667326b",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.17448535561561584,
+        "accuracy": 0.96,
+        "f1": 0.959737274220033
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.0005
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v2/mdl_4667326b_attention_gene_network_trained.pt",
+      "training_time_s": 4.150975465774536,
+      "created_at": "2026-06-04T03:27:31.196482+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_c1f77c15",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 211970
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v2/mdl_c1f77c15_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:27:31.213858+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_7f23ae60",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.40591713786125183,
+        "accuracy": 0.8,
+        "f1": 0.7938879456706281
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 100,
+        "learning_rate": 0.0005
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v2/mdl_7f23ae60_attention_gene_network_trained.pt",
+      "training_time_s": 4.296329021453857,
+      "created_at": "2026-06-04T03:27:35.613734+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_de4ccf8a",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 250370
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v2/mdl_de4ccf8a_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:27:35.632208+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_8c8cbb82",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.3106631338596344,
+        "accuracy": 0.8,
+        "f1": 0.798686371100164
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 400,
+        "learning_rate": 0.0005
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v2/mdl_8c8cbb82_attention_gene_network_trained.pt",
+      "training_time_s": 4.4550347328186035,
+      "created_at": "2026-06-04T03:27:40.186556+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_e58eff13",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 224770
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v2/mdl_e58eff13_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:27:40.203918+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_175ce226",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.001523094135336578,
+        "accuracy": 1.0,
+        "f1": 1.0
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.0005
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v2/mdl_175ce226_attention_gene_network_trained.pt",
+      "training_time_s": 4.128638744354248,
+      "created_at": "2026-06-04T03:27:44.434634+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_430a5d0b",
+      "model_type": "logistic_regression",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9183673469387755,
+        "f1": 0.9173955296404275,
+        "auc_roc": 0.9531772575250836,
+        "cross_val_mean": 0.8827651515151516
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v3/model_430a5d0b.pkl",
+      "training_time_s": 0.0069122314453125,
+      "created_at": "2026-06-04T03:30:19.916253+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_afd250c2",
+      "model_type": "random_forest",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9183673469387755,
+        "f1": 0.9180237751666322,
+        "auc_roc": 0.9682274247491639,
+        "cross_val_mean": 0.8571969696969697
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v3/model_afd250c2.pkl",
+      "training_time_s": 0.2979452610015869,
+      "created_at": "2026-06-04T03:30:21.994960+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_a1d4a613",
+      "model_type": "svm",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9183673469387755,
+        "f1": 0.9180237751666322,
+        "auc_roc": 0.9698996655518395,
+        "cross_val_mean": 0.8820075757575758
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v3/model_a1d4a613.pkl",
+      "training_time_s": 0.005139589309692383,
+      "created_at": "2026-06-04T03:30:22.124355+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_d0d52b64",
+      "model_type": "gradient_boosting",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9387755102040817,
+        "f1": 0.9383095310005609,
+        "auc_roc": 0.9749163879598662,
+        "cross_val_mean": 0.8329545454545455
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v3/model_d0d52b64.pkl",
+      "training_time_s": 1.3102197647094727,
+      "created_at": "2026-06-04T03:30:30.897498+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_75939c24",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 423042
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v3/mdl_75939c24_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:30:31.136286+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_37b8c0a9",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.10824324935674667,
+        "accuracy": 0.9393939393939394,
+        "f1": 0.9393939393939394
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.001
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v3/mdl_37b8c0a9_attention_gene_network_trained.pt",
+      "training_time_s": 11.71107292175293,
+      "created_at": "2026-06-04T03:30:43.025624+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_753596c7",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 423042
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v3/mdl_753596c7_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:30:43.048410+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_e0c5e4c8",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.3841894567012787,
+        "accuracy": 0.72,
+        "f1": 0.7181609195402298
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.0005
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v3/mdl_e0c5e4c8_attention_gene_network_trained.pt",
+      "training_time_s": 6.1926867961883545,
+      "created_at": "2026-06-04T03:30:49.344939+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_a2ed9321",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 423042
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v3/mdl_a2ed9321_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:30:49.367653+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_799a6d55",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.2453540414571762,
+        "accuracy": 0.96,
+        "f1": 0.959737274220033
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.0005
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v3/mdl_799a6d55_attention_gene_network_trained.pt",
+      "training_time_s": 6.163301229476929,
+      "created_at": "2026-06-04T03:30:55.639293+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_28e53dda",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 410242
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v3/mdl_28e53dda_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:30:55.660963+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_39bf30ef",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.11825118958950043,
+        "accuracy": 0.96,
+        "f1": 0.959737274220033
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 100,
+        "learning_rate": 0.0005
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v3/mdl_39bf30ef_attention_gene_network_trained.pt",
+      "training_time_s": 6.479738235473633,
+      "created_at": "2026-06-04T03:31:02.259710+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_484adc15",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 448642
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v3/mdl_484adc15_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:31:02.285137+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_99a64513",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.42643073201179504,
+        "accuracy": 0.8,
+        "f1": 0.7938879456706281
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 400,
+        "learning_rate": 0.0005
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v3/mdl_99a64513_attention_gene_network_trained.pt",
+      "training_time_s": 7.218950510025024,
+      "created_at": "2026-06-04T03:31:09.615051+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_3ca0aa36",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 423042
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v3/mdl_3ca0aa36_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:31:09.637801+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_043e187f",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.101166270673275,
+        "accuracy": 0.96,
+        "f1": 0.9601288244766505
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.0005
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_model_research_v3/mdl_043e187f_attention_gene_network_trained.pt",
+      "training_time_s": 6.6101062297821045,
+      "created_at": "2026-06-04T03:31:16.351887+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_7faf954e",
+      "model_type": "logistic_regression",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9183673469387755,
+        "f1": 0.9173955296404275,
+        "auc_roc": 0.9531772575250836,
+        "cross_val_mean": 0.8827651515151516
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/model_7faf954e.pkl",
+      "training_time_s": 0.006796360015869141,
+      "created_at": "2026-06-04T03:41:19.244032+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_15afc2b5",
+      "model_type": "random_forest",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9183673469387755,
+        "f1": 0.9180237751666322,
+        "auc_roc": 0.9682274247491639,
+        "cross_val_mean": 0.8571969696969697
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/model_15afc2b5.pkl",
+      "training_time_s": 0.29207849502563477,
+      "created_at": "2026-06-04T03:41:21.272714+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_812a47b2",
+      "model_type": "svm",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9183673469387755,
+        "f1": 0.9180237751666322,
+        "auc_roc": 0.9698996655518395,
+        "cross_val_mean": 0.8820075757575758
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/model_812a47b2.pkl",
+      "training_time_s": 0.005196094512939453,
+      "created_at": "2026-06-04T03:41:21.384223+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_04fa7f34",
+      "model_type": "gradient_boosting",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9387755102040817,
+        "f1": 0.9383095310005609,
+        "auc_roc": 0.9749163879598662,
+        "cross_val_mean": 0.8329545454545455
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/model_04fa7f34.pkl",
+      "training_time_s": 1.3041987419128418,
+      "created_at": "2026-06-04T03:41:30.124469+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_9531dcd3",
+      "model_type": "logistic_regression",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9183673469387755,
+        "f1": 0.9173955296404275,
+        "auc_roc": 0.9531772575250836,
+        "cross_val_mean": 0.8827651515151516
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/model_9531dcd3.pkl",
+      "training_time_s": 0.006376028060913086,
+      "created_at": "2026-06-04T03:42:27.171296+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_610d4387",
+      "model_type": "random_forest",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9183673469387755,
+        "f1": 0.9180237751666322,
+        "auc_roc": 0.9682274247491639,
+        "cross_val_mean": 0.8571969696969697
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/model_610d4387.pkl",
+      "training_time_s": 0.30296921730041504,
+      "created_at": "2026-06-04T03:42:29.237069+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_55f5fcc9",
+      "model_type": "svm",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9183673469387755,
+        "f1": 0.9180237751666322,
+        "auc_roc": 0.9698996655518395,
+        "cross_val_mean": 0.8820075757575758
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/model_55f5fcc9.pkl",
+      "training_time_s": 0.005124568939208984,
+      "created_at": "2026-06-04T03:42:29.369426+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "model_91ed7624",
+      "model_type": "gradient_boosting",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "accuracy": 0.9387755102040817,
+        "f1": 0.9383095310005609,
+        "auc_roc": 0.9749163879598662,
+        "cross_val_mean": 0.8329545454545455
+      },
+      "hyperparameters": {
+        "n_samples": 161,
+        "n_features": 200
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/model_91ed7624.pkl",
+      "training_time_s": 1.3067328929901123,
+      "created_at": "2026-06-04T03:42:38.151559+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_eafcc83f",
+      "model_type": "residual_mlp",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "residual_mlp",
+        "n_params": 145986
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_eafcc83f_residual_mlp.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:42:42.956181+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_f33b5fcd",
+      "model_type": "residual_mlp",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.29967164993286133,
+        "accuracy": 0.8787878787878788,
+        "f1": 0.8787878787878788
+      },
+      "hyperparameters": {
+        "architecture": "residual_mlp",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.001
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_f33b5fcd_residual_mlp_trained.pt",
+      "training_time_s": 1.5673067569732666,
+      "created_at": "2026-06-04T03:42:44.678913+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_46dce3f2",
+      "model_type": "attention_gene_network",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_params": 423042
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_46dce3f2_attention_gene_network.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:42:48.155826+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_b2313514",
+      "model_type": "attention_gene_network",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.36109092831611633,
+        "accuracy": 0.8181818181818182,
+        "f1": 0.8084415584415584
+      },
+      "hyperparameters": {
+        "architecture": "attention_gene_network",
+        "n_samples": 161,
+        "n_features": 120,
+        "learning_rate": 0.0007
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_b2313514_attention_gene_network_trained.pt",
+      "training_time_s": 2.8652915954589844,
+      "created_at": "2026-06-04T03:42:51.138380+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_5725d423",
+      "model_type": "gene_transformer",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "gene_transformer",
+        "n_params": 423042
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_5725d423_gene_transformer.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:42:59.432287+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_b73d7e49",
+      "model_type": "gene_transformer",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.22101067006587982,
+        "accuracy": 0.9393939393939394,
+        "f1": 0.9388243335611756
+      },
+      "hyperparameters": {
+        "architecture": "gene_transformer",
+        "n_samples": 161,
+        "n_features": 120,
+        "learning_rate": 0.0006
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_b73d7e49_gene_transformer_trained.pt",
+      "training_time_s": 3.1863694190979004,
+      "created_at": "2026-06-04T03:43:02.727199+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_771d768a",
+      "model_type": "gene_transformer",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "gene_transformer",
+        "n_params": 423042
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_771d768a_gene_transformer.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:43:08.019312+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_3b94356f",
+      "model_type": "gene_transformer",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.40465521812438965,
+        "accuracy": 0.8181818181818182,
+        "f1": 0.8132867132867132
+      },
+      "hyperparameters": {
+        "architecture": "gene_transformer",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.000252
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_3b94356f_gene_transformer_trained.pt",
+      "training_time_s": 7.879013776779175,
+      "created_at": "2026-06-04T03:43:16.008791+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_b4a9848d",
+      "model_type": "gene_transformer",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "gene_transformer",
+        "n_params": 423042
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_b4a9848d_gene_transformer.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:43:16.033651+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_25ee5d81",
+      "model_type": "gene_transformer",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.2459339052438736,
+        "accuracy": 0.9393939393939394,
+        "f1": 0.9388243335611756
+      },
+      "hyperparameters": {
+        "architecture": "gene_transformer",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.000284
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_25ee5d81_gene_transformer_trained.pt",
+      "training_time_s": 7.678476572036743,
+      "created_at": "2026-06-04T03:43:23.817739+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_56387ca8",
+      "model_type": "gene_transformer",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "gene_transformer",
+        "n_params": 423042
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_56387ca8_gene_transformer.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:43:27.692537+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_c7fe8963",
+      "model_type": "gene_transformer",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.20410865545272827,
+        "accuracy": 0.9393939393939394,
+        "f1": 0.9393939393939394
+      },
+      "hyperparameters": {
+        "architecture": "gene_transformer",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.0005
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_c7fe8963_gene_transformer_trained.pt",
+      "training_time_s": 6.677904844284058,
+      "created_at": "2026-06-04T03:43:34.475023+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_53ba1461",
+      "model_type": "gene_transformer",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "gene_transformer",
+        "n_params": 423042
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_53ba1461_gene_transformer.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:43:34.498794+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_4b39d067",
+      "model_type": "gene_transformer",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.3709101378917694,
+        "accuracy": 0.8181818181818182,
+        "f1": 0.8132867132867132
+      },
+      "hyperparameters": {
+        "architecture": "gene_transformer",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.0005
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_4b39d067_gene_transformer_trained.pt",
+      "training_time_s": 6.708712339401245,
+      "created_at": "2026-06-04T03:43:41.318363+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_6b7fb1f4",
+      "model_type": "gene_transformer",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "gene_transformer",
+        "n_params": 410242
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_6b7fb1f4_gene_transformer.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:43:41.340803+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_10e10236",
+      "model_type": "gene_transformer",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.1384626179933548,
+        "accuracy": 0.9090909090909091,
+        "f1": 0.9092584834520318
+      },
+      "hyperparameters": {
+        "architecture": "gene_transformer",
+        "n_samples": 161,
+        "n_features": 100,
+        "learning_rate": 0.0005
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_10e10236_gene_transformer_trained.pt",
+      "training_time_s": 9.139858484268188,
+      "created_at": "2026-06-04T03:43:50.591270+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_f875f3b3",
+      "model_type": "gene_transformer",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "gene_transformer",
+        "n_params": 461442
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_f875f3b3_gene_transformer.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:43:50.615690+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_50d41505",
+      "model_type": "gene_transformer",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.4167484641075134,
+        "accuracy": 0.7878787878787878,
+        "f1": 0.7842527842527842
+      },
+      "hyperparameters": {
+        "architecture": "gene_transformer",
+        "n_samples": 161,
+        "n_features": 500,
+        "learning_rate": 0.0005
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_50d41505_gene_transformer_trained.pt",
+      "training_time_s": 5.447160720825195,
+      "created_at": "2026-06-04T03:43:56.171249+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_5311d7c0",
+      "model_type": "gene_transformer",
+      "task": "architecture_build",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {},
+      "hyperparameters": {
+        "architecture": "gene_transformer",
+        "n_params": 423042
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_5311d7c0_gene_transformer.pt",
+      "training_time_s": 0.0,
+      "created_at": "2026-06-04T03:43:56.197528+00:00",
+      "notes": "architecture_build",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    },
+    {
+      "id": "mdl_970fdfd3",
+      "model_type": "gene_transformer",
+      "task": "classification",
+      "hypothesis_id": null,
+      "experiment_id": null,
+      "metrics": {
+        "best_val_loss": 0.374133437871933,
+        "accuracy": 0.8181818181818182,
+        "f1": 0.8132867132867132
+      },
+      "hyperparameters": {
+        "architecture": "gene_transformer",
+        "n_samples": 161,
+        "n_features": 200,
+        "learning_rate": 0.0005
+      },
+      "feature_genes": [],
+      "model_path": "research_output/test_autonomous/mdl_970fdfd3_gene_transformer_trained.pt",
+      "training_time_s": 5.370858192443848,
+      "created_at": "2026-06-04T03:44:01.679715+00:00",
+      "notes": "classification",
+      "baseline": false,
+      "paper_reference": "",
+      "comparison_to_baselines": {}
+    }
+  ]
+}

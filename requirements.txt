@@ -24,6 +24,13 @@ huggingface-hub>=0.20
 datasets>=2.16
 accelerate>=0.25
 
+# Optional: LoRA / PEFT fine-tuning of protein & genomic LMs
+# peft>=0.7
+# bitsandbytes>=0.41              # quantized model loading (4-bit / 8-bit)
+
+# Optional: Graph Neural Networks
+# torch-geometric>=2.4
+
 # GPU: PyTorch is required for ML tools, neural networks, and GPU-accelerated DE
 # Install separately for your CUDA version:
 #   pip install torch --index-url https://download.pytorch.org/whl/cu121
